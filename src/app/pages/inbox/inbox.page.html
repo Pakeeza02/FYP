@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{recepientName | titlecase}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-top">
+
+  <div *ngFor="let msg of messages">
+    <ion-item lines="none" [class]="msg?.uid !== myUid ? 'sender' : 'user'">
+      <ion-label [slot]="msg?.uid == myUid ? 'end' : 'start'" class="ion-text-wrap">
+        <ion-text *ngIf="msg.message">{{msg?.message}}</ion-text>
+        <ion-note>
+          <small>{{msg.timestamp | date: 'HH:mm a'}}</small>
+          <ion-icon [color]="msg?.uid == myUid ? 'light' : 'primary'" name="checkmark-done-outline"></ion-icon>
+        </ion-note>
+      </ion-label>
+    </ion-item>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar style="padding-left: 10px;" color="light">
+    <ion-input [(ngModel)]="writeMessage" (keyup.enter)="sendMessage()" #search autocapitalize="sentences"
+      autofocus="true" type="text" placeholder="Type message here...">
+    </ion-input>
+    <ion-buttons (click)="sendMessage()" slot="end">
+      <ion-fab-button size="small" color="primary">
+        <ion-icon name="send" color="light"></ion-icon>
+      </ion-fab-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

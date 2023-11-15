@@ -1,0 +1,489 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import '@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+// CSS customize classes
+
+ion-button {
+    text-transform: none;
+    height: 45px;
+}
+
+.ms {
+    margin-left: 5px !important;
+}
+
+.ms-1 {
+    margin-left: 10px !important;
+}
+
+.ms-2 {
+    margin-left: 15px !important;
+}
+
+.ms-3 {
+    margin-left: 20px !important;
+}
+
+.ms-4 {
+    margin-left: 25px !important;
+}
+
+.mb {
+    margin-top: 1rem !important;
+}
+
+.mb1 {
+    margin-top: -18px !important;
+}
+
+.mb-1 {
+    margin-bottom: 1em !important;
+}
+
+.mt1 {
+    margin-top: 6px !important;
+}
+
+.mt-1 {
+    margin-top: 1em;
+}
+
+ion-select {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+ion-label {
+    text-transform: none;
+}
+
+ms-5 {
+    margin-left: 15px !important;
+}
+
+.avatarSize {
+    width: 70px !important;
+    height: 70px !important;
+}
+
+.fs-1 {
+    font-size: 1rem !important;
+}
+
+.fs-2 {
+    font-size: 2rem !important;
+}
+
+.fs-3 {
+    font-size: 3rem !important;
+}
+
+.bold {
+    font-weight: bold !important;
+}
+
+.height-1 {
+    height: 325px !important;
+}
+
+.width-1 {
+    width: 80px !important;
+}
+
+.btnPrice {
+    height: 18px !important;
+    width: 150px !important;
+    margin-top: 19px !important;
+    margin-left: 25px !important;
+}
+
+.EventBtn {
+    height: 40px !important;
+}
+
+.Chip {
+    margin-top: 20px !important;
+    margin-left: 90px !important;
+}
+
+.marginTop {
+    margin-top: 100px !important;
+}
+
+.fs {
+    font-size: 14px;
+}
+
+.fs-1 {
+    font-size: 16px;
+}
+
+.fs-2 {
+    font-size: 17px;
+}
+
+.rowShadow {
+    box-shadow: 0 -4px 7px 0 rgb(0 0 0 / 6%), 0 6px 10px 0 rgb(0 0 0 / 8%);
+    border-radius: 10px;
+}
+
+.bgColor {
+    --background: green;
+}
+
+.colShadow {
+    background-color: #92949c;
+    border-radius: 10px 0 0 10px;
+}
+
+.colCss {
+    padding-left: 1rem;
+}
+
+.noPadding {
+    margin-top: -20px;
+    padding: 0;
+}
+
+.noPadding-1 {
+    margin-top: -25px;
+}
+
+.rowMargin {
+    margin-left: 13px;
+}
+
+.overflow {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+}
+
+::-webkit-scrollbar {
+    display: none !important;
+}
+
+.bottomSegments {
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    bottom: 10px;
+    left: 0;
+    z-index: 9999;
+
+    ion-segment {
+        background-color: var(--ion-color-primary) !important;
+        border-radius: 30px;
+
+        ion-segment-button {
+            border: 1px solid black;
+        }
+    }
+}
+
+.rounded {
+    border-radius: 8px;
+}
+
+* {
+    font-family: "Roboto", sans-serif !important;
+}
+
+.mb-0 {
+    margin-bottom: 0em !important;
+}
+
+.mt-0 {
+    margin-top: 10px !important;
+}
+
+.mb-1 {
+    margin-bottom: 1em !important;
+}
+
+.mb-2 {
+    margin-bottom: 2em !important;
+}
+
+.mb-3 {
+    margin-bottom: 3em !important;
+}
+
+.mb-4 {
+    margin-bottom: 4em !important;
+}
+
+.mb-5 {
+    margin-bottom: 5em !important;
+}
+
+.mt-0 {
+    margin-top: 10px !important;
+}
+
+.mt-1 {
+    margin-top: 1em !important;
+}
+
+.mt-2 {
+    margin-top: 2em !important;
+}
+
+.mt-3 {
+    margin-top: 3em !important;
+}
+
+.mt-4 {
+    margin-top: 4em !important;
+}
+
+.mt-5 {
+    margin-top: 5em !important;
+}
+
+.mt-6 {
+    margin-top: 6em !important;
+}
+
+.my-0 {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.my-1 {
+    margin-top: 8px !important;
+    margin-bottom: 8px !important;
+}
+
+.mx-0 {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.mr-0 {
+    margin-right: 0px !important;
+}
+
+.pb-0 {
+    padding-bottom: 0px !important;
+}
+
+.pt-0 {
+    padding-top: 0px !important;
+}
+
+.px-0 {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.py-0 {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.p-0 {
+    padding: 0px !important;
+}
+
+.pr-0 {
+    padding-right: 0px !important;
+}
+
+.pt-1 {
+    padding-top: 5px !important;
+}
+
+.pb-1 {
+    padding-bottom: 5px !important;
+}
+
+.pl-0 {
+    padding-left: 0px !important;
+}
+
+.pl-1 {
+    padding-left: 5px !important;
+}
+
+.pr-1 {
+    padding-right: 5px !important;
+}
+
+.px-1 {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+.pb-1 {
+    padding-bottom: 5px !important;
+}
+
+.h-50 {
+    height: 50px !important;
+}
+
+.h-45 {
+    height: 45px !important;
+}
+
+.bold {
+    font-weight: bold !important;
+}
+
+.italic {
+    font-style: italic !important;
+}
+
+.fw500 {
+    font-weight: 500 !important;
+}
+
+.bg-none {
+    background: transparent !important;
+    --background: transparent !important;
+}
+
+ion-button {
+    text-transform: none !important;
+}
+
+.rounded {
+    --border-radius: 12px !important;
+    border-radius: 12px !important;
+}
+
+.rounded-30 {
+    --border-radius: 30px !important;
+    border-radius: 30px !important;
+}
+
+.rounded-sm {
+    --border-radius: 8px !important;
+    border-radius: 8px !important;
+}
+
+.no-rounded {
+    border-radius: 0px !important;
+    --border-radius: 0px !important;
+}
+
+.lightshadow {
+    box-shadow: 1px 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.lightshadow2 {
+    box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.shadow {
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+}
+
+.horizontalScroll {
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+
+::-webkit-scrollbar {
+    display: none !important;
+}
+
+.popupModal {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 999999;
+    background: rgba(33, 42, 55, 0.63);
+    padding: 20% 6%;
+    overflow-y: initial !important;
+
+    .innerDiv {
+        background-color: #ffffff;
+        padding: 12px;
+        border-radius: 16px;
+        position: relative;
+        height: 70vh;
+
+        ion-grid {
+            overflow-y: scroll;
+            max-height: 60vh;
+            margin-top: 10px;
+        }
+    }
+}
+
+.appTxt {
+    font-size: 13px !important;
+}
+
+.d-flex {
+    display: flex !important;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.borderTop {
+    border-top: 1px solid var(--ion-color-light);
+}
+
+.borderBottom {
+    border-bottom: 1px solid var(--ion-color-light);
+}
+
+.borderd {
+    border: 1px solid var(--ion-color-medium);
+}
+
+.errorMsg {
+    font-size: 12px;
+    color: var(--ion-color-danger);
+}
+
+// @font-face {
+//     font-family: 'Bristone';
+//     src: url('./assets/font/Bristone.otf') format('truetype');
+// }
+
+// * {
+//     font-family: 'Bristone' !important;
+// }
+ion-content {
+    --background: #ffffff;
+}
+
+.tab-selected {
+    ion-icon {
+        color: var(--ion-color-primary);
+    }
+
+    ion-label {
+        color: var(--ion-color-primary);
+    }
+}

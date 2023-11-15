@@ -1,0 +1,103 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title *ngIf="dataHelper.userType === 'seller'">Seller</ion-title>
+        <ion-title *ngIf="dataHelper.userType !== 'seller'">Buyer</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="openFilters()" shape="round">
+                <ion-icon name="funnel"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <div class="scrollHorizontal">
+        <ion-card *ngFor="let img of slideImages;index as i" class="ion-no-margin reviewCard1">
+            <ion-card-content class="ion-no-padding">
+                <img class="images" [src]="img" height="200px">
+            </ion-card-content>
+        </ion-card>
+    </div>
+    <h4>
+        <ion-text class="bold" style="margin-bottom: 15px;">Cars for sale</ion-text>
+    </h4>
+
+    <p *ngIf="!myVehicles.length && dataHelper.userType==='seller'" class="ion-text-center mt-5">Please add your car!
+    </p>
+
+    <div class="scrollHorizontal mb-1">
+        <ion-card (click)="carDetails(car)" *ngFor="let car of myVehicles" class="ion-no-margin reviewCard">
+            <ion-card-content class="ion-no-padding">
+                <swiper-container pagination="true">
+                    <swiper-slide>
+                        <img src={{car?.coverImageUrl}}>
+                    </swiper-slide>
+                    <swiper-slide *ngFor="let img of car?.imageUrls; index as i">
+                        <img src={{img}}>
+                    </swiper-slide>
+                </swiper-container>
+                <div style="padding-left: 10px !important;padding-bottom: 6px">
+
+                    <ion-item style="--background: transparent !important;" lines="none" class="ion-no-padding">
+                        <ion-label>
+                            <h3 class="ion-no-margin bold">
+                                <ion-text color="dark">{{car?.vehicleName | titlecase}}</ion-text>
+                            </h3>
+                            <p>
+                                <ion-text color="medium">{{car?.location}}</ion-text>
+                            </p>
+                            <p class="bold priceTxt">${{car?.carPrice}}</p>
+
+                        </ion-label>
+                    </ion-item>
+                </div>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+    <ion-card (click)="carDetails(car)" class="ion-no-margin mb-1" *ngFor="let car of myVehicles">
+        <swiper-container pagination="true">
+            <swiper-slide>
+                <img class="carImages" src={{car?.coverImageUrl}}>
+            </swiper-slide>
+            <swiper-slide *ngFor="let img of car?.imageUrls; index as i">
+                <img class="carImages" src={{img}}>
+            </swiper-slide>
+        </swiper-container>
+
+        <ion-card-content style="padding: 5px 12px;">
+            <ion-item lines="none" class="ion-no-padding">
+                <ion-label>
+                    <h2><b>{{car?.vehicleName | titlecase}}</b></h2>
+                    <h3>{{car?.transmission}}</h3>
+                    <ion-row>
+                        <ion-col size="6" class="ion-no-padding">
+                            <p>
+                                <ion-text color="medium">{{car?.location}}</ion-text>
+                            </p>
+                        </ion-col>
+                        <ion-col size="6" class="ion-text-right ion-no-padding">
+                            <ion-badge color="dark" style="padding: 5px 10px;margin-top: -10px;" class=" ion-text-end">
+                                <ion-text style="font-size: 16px;" color="light"> <b>${{car.carPrice ||
+                                        '100'}}</b></ion-text>
+                            </ion-badge>
+                        </ion-col>
+                    </ion-row>
+                </ion-label>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-fab *ngIf="dataHelper.userType === 'seller'" (click)="addNewVehicle()" vertical="bottom" horizontal="end"
+        slot="fixed">
+        <ion-fab-button color="primary">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

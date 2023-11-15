@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Chat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item lines="none" class="searchBar ion-margin">
+    <ion-icon name="search-outline" color="primary" slot="start"></ion-icon>
+    <ion-input [(ngModel)]="searchQuery" clearInput type="text" placeholder="Search here..."></ion-input>
+  </ion-item>
+
+  <p *ngIf="!chatList.length" class="ion-text-center mt-5">No chats found!</p>
+
+  <ion-item (click)="chatScreen(chat)" *ngFor="let chat of chatList" [ngClass]="{'hidden-item': !chatVisible(chat)}">
+    <ion-thumbnail>
+      <img style="border-radius: 8px;" [src]="getVehicleImage(chat.vehicleId)" alt="Image">
+    </ion-thumbnail>
+    <ion-label class="ion-margin-start">
+      <h2>{{getVehicleTitle(chat) | titlecase}}</h2>
+      <h3>{{getReceiverName(chat) | titlecase}}</h3>
+      <p>{{chat.lastMessage}}</p>
+    </ion-label>
+    <div class="info-div">
+      <p class="appTxt">{{chat.lastMsgTime | date: 'HH:mm a'}}</p>
+    </div>
+  </ion-item>
+
+</ion-content>

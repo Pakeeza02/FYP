@@ -1,0 +1,64 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Profile Setting</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <div class="ion-text-center">
+        <ion-item lines="none" class="ion-padding-vertical">
+            <ion-avatar class="ion-no-margin">
+                <img [src]="userAuth.currentUser.profileUrl || dataHelper.userAvatar">
+            </ion-avatar>
+            <ion-label class="ms-2 ">
+                <h2 class="bold">
+                    <ion-text color="primary">{{userAuth.currentUser.fullName}}</ion-text>
+                </h2>
+                <p>{{userAuth.currentUser.email}}</p>
+                <ion-button color="primary" routerLink="/edit-profile" style="height: 35px;" size="small">
+                    Edit Profile
+                    <ion-icon color="light" slot="end" name="chevron-forward-outline"></ion-icon>
+                </ion-button>
+            </ion-label>
+        </ion-item>
+    </div>
+
+    <div class="ion-padding-vertical">
+
+        <ion-item class="ion-no-padding" routerLink="/change-password" lines="none" class="mb-1">
+            <ion-icon color="secondary" slot="start" name="lock-closed"></ion-icon>
+            <ion-label>
+                Change Password
+            </ion-label>
+            <ion-icon color="dark" slot="end" name="chevron-forward-outline"></ion-icon>
+        </ion-item>
+
+        <ion-item routerLink="/user-role" class="ion-no-padding" lines="none" class="mb-1">
+            <ion-icon color="warning" slot="start" name="swap-horizontal"></ion-icon>
+            <ion-label>
+                Switch Role
+            </ion-label>
+            <ion-icon color="dark" slot="end" name="chevron-forward-outline"></ion-icon>
+        </ion-item>
+
+        <ion-item routerLink="/privacy-policy" class="ion-no-padding" lines="none" class="mb-1">
+            <ion-icon color="success" slot="start" name="shield-checkmark"></ion-icon>
+            <ion-label>
+                Privacy Policy
+            </ion-label>
+            <ion-icon color="dark" slot="end" name="chevron-forward-outline"></ion-icon>
+        </ion-item>
+
+        <ion-item (click)="logoutAlert()" class="ion-no-padding" lines="none" class="mb-1">
+            <ion-icon color="danger" slot="start" name="log-out"></ion-icon>
+            <ion-label>
+                Logout
+            </ion-label>
+            <ion-icon color="dark" slot="end" name="chevron-forward-outline"></ion-icon>
+        </ion-item>
+    </div>
+
+</ion-content>

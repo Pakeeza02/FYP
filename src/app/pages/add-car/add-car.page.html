@@ -1,0 +1,150 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add your car</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div [formGroup]="carInfoForm">
+
+    <ion-card class="ion-no-margin">
+      <ion-item lines="none">
+        <ion-input formControlName="vehicleName" type="text" placeholder="Car Title"></ion-input>
+      </ion-item>
+    </ion-card>
+    <p class="errorMsg" *ngIf="carInfoForm.get('vehicleName').hasError('required') &&
+    (carInfoForm.get('vehicleName').dirty || carInfoForm.get('vehicleName').touched)">
+      *This field is required!
+    </p>
+
+    <ion-card class="ion-no-margin">
+      <ion-item lines="none">
+        <ion-textarea formControlName="vehicleDescription" rows="5" cols="20" placeholder="Description"></ion-textarea>
+      </ion-item>
+    </ion-card>
+    <p class="errorMsg" *ngIf="carInfoForm.get('vehicleDescription').hasError('required') &&
+  (carInfoForm.get('vehicleDescription').dirty || carInfoForm.get('vehicleDescription').touched)">
+      *This field is required!
+    </p>
+
+    <ion-card class="ion-no-margin">
+      <ion-item lines="none">
+        <ion-select formControlName="vehicleCompany" placeholder="Car Company" multiple="false">
+          <ion-select-option *ngFor="let company of dataHelper.carCompany">{{company}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+    <p class="errorMsg" *ngIf="carInfoForm.get('vehicleCompany').hasError('required') &&
+  (carInfoForm.get('vehicleCompany').dirty || carInfoForm.get('vehicleCompany').touched)">
+      *This field is required!
+    </p>
+
+    <ion-card class="ion-no-margin">
+      <ion-item lines="none">
+        <ion-select formControlName="vehicleModel" placeholder="Car Model" multiple="false">
+          <ion-select-option *ngFor="let model of dataHelper.carModels">{{model}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+    <p class="errorMsg" *ngIf="carInfoForm.get('vehicleModel').hasError('required') &&
+  (carInfoForm.get('vehicleModel').dirty || carInfoForm.get('vehicleModel').touched)">
+      *This field is required!
+    </p>
+
+    <ion-card class="ion-no-margin">
+      <p style="margin-top: 8px;margin-left: 10px;" class="fs ion-no-margin">
+        <ion-text color="medium"><b>Price</b></ion-text><br>
+        <ion-text color="medium"><b>${{price}}</b></ion-text>
+      </p>
+      <ion-range class="ion-no-padding" style="padding-left: 8px;padding-right: 8px;" [min]="0" [max]="5000"
+        aria-label="Range with pin" [pin]="false" [(ngModel)]="price" [ngModelOptions]="{standalone: true}"
+        [pinFormatter]="pinFormatter"></ion-range>
+    </ion-card>
+
+    <ion-card class="ion-no-margin">
+      <ion-item lines="none">
+        <ion-select formControlName="location" placeholder="Choose Location" multiple="false">
+          <ion-select-option value="Brunei-Muara District, Brunei">Brunei-Muara District, Brunei</ion-select-option>
+          <ion-select-option value="Tutong District, Brunei">Tutong District, Brunei</ion-select-option>
+          <ion-select-option value="Belait District, Brunei">Belait District, Brunei</ion-select-option>
+          <ion-select-option value="Temburong District, Brunei">Temburong District, Brunei</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+    <p class="errorMsg" *ngIf="carInfoForm.get('location').hasError('required') &&
+  (carInfoForm.get('location').dirty || carInfoForm.get('location').touched)">
+      *This field is required!
+    </p>
+
+    <ion-card class="ion-no-margin">
+      <ion-item lines="none">
+        <ion-select formControlName="carburant" placeholder="Fuel Type" multiple="false">
+          <ion-select-option value="Gas">Gas</ion-select-option>
+          <ion-select-option value="Diesel">Diesel</ion-select-option>
+          <ion-select-option value="Electric">Electric</ion-select-option>
+          <ion-select-option value="Petrol">Petrol</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+    <p class="errorMsg" *ngIf="carInfoForm.get('carburant').hasError('required') &&
+  (carInfoForm.get('carburant').dirty || carInfoForm.get('carburant').touched)">
+      *This field is required!
+    </p>
+
+    <ion-card class="ion-no-margin">
+      <ion-item lines="none">
+        <ion-select formControlName="transmission" placeholder="Transmission" multiple="false">
+          <ion-select-option value="Manual">Manual</ion-select-option>
+          <ion-select-option value="Automatic">Automatic</ion-select-option>
+          <ion-select-option value="Hybrid">Hybrid</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+    <p class="errorMsg" *ngIf="carInfoForm.get('transmission').hasError('required') &&
+  (carInfoForm.get('transmission').dirty || carInfoForm.get('transmission').touched)">
+      *This field is required!
+    </p>
+
+    <ion-card class="ion-no-margin">
+      <ion-item lines="none">
+        <ion-input formControlName="registrationNumber" type="text" placeholder="Registration Number"></ion-input>
+      </ion-item>
+    </ion-card>
+    <p class="errorMsg" *ngIf="carInfoForm.get('registrationNumber').hasError('required') &&
+  (carInfoForm.get('registrationNumber').dirty || carInfoForm.get('registrationNumber').touched)">
+      *This field is required!
+    </p>
+
+    <ion-card class="ion-no-margin">
+      <ion-item lines="none">
+        <ion-select formControlName="vehicleRegYear" placeholder="Registration Year" multiple="false">
+          <ion-select-option *ngFor="let number of dataHelper.registrationYear" [value]="number">{{number}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+    <p class="errorMsg" *ngIf="carInfoForm.get('vehicleRegYear').hasError('required') &&
+  (carInfoForm.get('vehicleRegYear').dirty || carInfoForm.get('vehicleRegYear').touched)">
+      *This field is required!
+    </p>
+
+    <ion-card class="ion-no-margin">
+      <ion-item lines="none">
+        <ion-input formControlName="mileage" type="number" placeholder="Mileage (in Km)"></ion-input>
+      </ion-item>
+    </ion-card>
+    <p class="errorMsg" *ngIf="carInfoForm.get('mileage').hasError('required') &&
+  (carInfoForm.get('mileage').dirty || carInfoForm.get('mileage').touched)">
+      *This field is required!
+    </p>
+
+    <ion-button [disabled]="!carInfoForm.valid" (click)="saveVehicleInfo()" class="ion-margin-top" expand="block"
+      color="primary">Next</ion-button>
+
+  </div>
+
+</ion-content>

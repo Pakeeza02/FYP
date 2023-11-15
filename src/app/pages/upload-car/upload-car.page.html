@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Upload Car</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+
+  <ion-card class="ion-no-margin mb-1" style="border-radius: 8px;">
+    <ion-card-content>
+      <div class="ion-text-center ion-margin-top">
+        <img src="../../../assets/icon/upload.png" height="100px">
+        <h2 class="bold mt-1">Upload Car Document</h2>
+        <p>Browse your phone to choose file</p>
+        <ion-button (click)="openCameraOptions('carDocument')" class="ion-margin-top" color="dark">
+          Upload Car Document
+          <ion-icon *ngIf="dataHelper.vehicleDetails.carDocument" name="checkmark-circle" slot="end" color="light">
+          </ion-icon>
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="bgLight ion-margin-vertical ion-padding rounded">
+    <div class="ion-text-center" *ngIf="!dataHelper.vehicleDetails.coverImageUrl">
+      <img class="mainImgIcon" (click)="openCameraOptions('coverImage')" [src]="'../../../assets/icon/camera.png'">
+    </div>
+    <div class="ion-text-center" *ngIf="dataHelper.vehicleDetails.coverImageUrl">
+      <img class="mainImg" (click)="openCameraOptions('coverImage')" [src]="dataHelper.vehicleDetails.coverImageUrl">
+    </div>
+  </div>
+
+  <ion-row *ngIf="dataHelper.vehicleDetails.coverImageUrl" class="mt-1">
+    <ion-col *ngFor="let img of dataHelper.vehicleDetails.imageUrls; index as i" size="4" class="pl-0">
+      <div class="imgCont" style="height: 90px; position: relative;">
+        <img class="additionalImages" [src]="img">
+        <ion-icon (click)="removeImg(i)" name="close-circle" color="danger" class="removeIcon"></ion-icon>
+      </div>
+    </ion-col>
+    <ion-col size="4" class="pr-0">
+      <div (click)="openCameraOptions()" class="imgCont" style="height: 90px;">
+        <img src="../../../assets/icon/camera.png" height="50px;">
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <ion-button (click)="saveDocuments()" color="primary" expand="block">
+    Submit Vehicle Information
+  </ion-button>
+</ion-content>
+
+<div *ngIf="dataHelper.showInfoSavedPopup" class="popupModal ion-padding">
+  <div class="innerDiv">
+    <h4 class="ion-text-center bold">
+      <ion-text color="dark">Congratulations!</ion-text>
+    </h4>
+    <p class="ion-text-center">
+      <ion-text color="dark">Your vehicle details have been successfully saved!</ion-text>
+    </p>
+    <div class="ion-text-center ion-margin">
+      <ion-button shape="round" (click)="dataHelper.showInfoSavedPopup = false" routerLink="/tabs/tab1"
+        routerDirection="root" style="width: 50%;" color="success">Ok
+      </ion-button>
+    </div>
+  </div>
+</div>

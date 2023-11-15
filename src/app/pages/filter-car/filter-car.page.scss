@@ -1,0 +1,10 @@
+ion-card {
+    margin-bottom: 15px !important;
+    background-color: #f9f9f9;
+    box-shadow: none !important;
+    border-radius: 10px !important;
+
+    ion-item {
+        --background: transparent !important;
+    }
+}
