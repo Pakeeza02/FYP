@@ -1,0 +1,49 @@
+<section style="margin: 0 !important;" class="section section--hero-finances">
+  <div class="a">
+    <div class="container-fluid">
+      <div class="navbar-wrapper">
+        <nav class="navbar navbar-expand-lg">
+          <div style="padding: 0;margin-top: 10px !important" class="container-fluid">
+            <a class="navbar-brand" style="padding: 0 !important;" href="#"><img src="../../../assets/images/black.png"
+                alt="" width="100px" style="height: 75px !important;object-fit: contain !important;" /></a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon" style="color: darkgreen; width: 30px; height: 30px;"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="main_nav">
+              <ul class="navbar-nav ms-auto mt-2 mb-1 mb-lg-0">
+                <li class="nav-item">
+                  <a style="cursor: pointer !important;" class="nav-link active text-dark ms-3"
+                    (click)="allProducts()">All Products</a>
+                </li>
+                <li class="nav-item ms-3">
+                  <a style="cursor: pointer !important;" class="nav-link active text-dark"
+                    routerLink="/services">Services</a>
+                </li>
+                <li class="nav-item ms-3">
+                  <a style="cursor: pointer !important;" class="nav-link active text-dark"
+                    routerLink="/our-team">Wishlist</a>
+                </li>
+                <li class="nav-item ms-3">
+                  <a style="cursor: pointer !important;" class="nav-link active text-dark" routerLink="/about">Cart</a>
+                </li>
+                <li class="nav-item ms-3">
+                  <a style="cursor: pointer !important;" class="nav-link active text-dark" routerLink="/about">About
+                    Us</a>
+                </li>
+                <li class="nav-item ms-3">
+                  <button routerLink="/contact-us" class="btn btn-success mb-1">Contact</button>
+                </li>
+                <li class="nav-item ms-3">
+                  <button (click)="userAuth.logoutUser()" class="btn  btn-primary">Login</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+  </div>
+</section>

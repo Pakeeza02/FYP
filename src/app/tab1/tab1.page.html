@@ -1,14 +1,4 @@
-<ion-header>
-    <ion-toolbar color="primary">
-        <ion-title *ngIf="dataHelper.userType === 'seller'">Seller</ion-title>
-        <ion-title *ngIf="dataHelper.userType !== 'seller'">Buyer</ion-title>
-        <ion-buttons slot="end">
-            <ion-button (click)="openFilters()" shape="round">
-                <ion-icon name="funnel"></ion-icon>
-            </ion-button>
-        </ion-buttons>
-    </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
 <ion-content class="ion-padding">
 
@@ -16,7 +6,7 @@
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
 
-    <div class="scrollHorizontal">
+    <div class="scrollHorizontal" style="margin-top: 120px !important;">
         <ion-card *ngFor="let img of slideImages;index as i" class="ion-no-margin reviewCard1">
             <ion-card-content class="ion-no-padding">
                 <img class="images" [src]="img" height="200px">

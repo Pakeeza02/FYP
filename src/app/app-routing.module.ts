@@ -4,11 +4,11 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./credentials/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./credentials/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   },
   {
     path: 'inbox',
@@ -24,39 +24,59 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./credentials/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./credentials/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'signup',
-    loadChildren: () => import('./credentials/signup/signup.module').then( m => m.SignupPageModule)
+    loadChildren: () => import('./credentials/signup/signup.module').then(m => m.SignupPageModule)
   },
   {
     path: 'reset-password',
-    loadChildren: () => import('./credentials/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
+    loadChildren: () => import('./credentials/reset-password/reset-password.module').then(m => m.ResetPasswordPageModule)
   },
   {
     path: 'privacy-policy',
-    loadChildren: () => import('./pages/privacy-policy/privacy-policy.module').then( m => m.PrivacyPolicyPageModule)
+    loadChildren: () => import('./pages/privacy-policy/privacy-policy.module').then(m => m.PrivacyPolicyPageModule)
   },
   {
     path: 'user-role',
-    loadChildren: () => import('./pages/user-role/user-role.module').then( m => m.UserRolePageModule)
+    loadChildren: () => import('./pages/user-role/user-role.module').then(m => m.UserRolePageModule)
   },
   {
     path: 'add-car',
-    loadChildren: () => import('./pages/add-car/add-car.module').then( m => m.AddCarPageModule)
+    loadChildren: () => import('./pages/add-car/add-car.module').then(m => m.AddCarPageModule)
   },
   {
     path: 'car-detail',
-    loadChildren: () => import('./pages/car-detail/car-detail.module').then( m => m.CarDetailPageModule)
+    loadChildren: () => import('./pages/car-detail/car-detail.module').then(m => m.CarDetailPageModule)
   },
   {
     path: 'filter-car',
-    loadChildren: () => import('./pages/filter-car/filter-car.module').then( m => m.FilterCarPageModule)
+    loadChildren: () => import('./pages/filter-car/filter-car.module').then(m => m.FilterCarPageModule)
   },
   {
     path: 'upload-car',
-    loadChildren: () => import('./pages/upload-car/upload-car.module').then( m => m.UploadCarPageModule)
+    loadChildren: () => import('./pages/upload-car/upload-car.module').then(m => m.UploadCarPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
+  },
+  {
+    path: 'wishlist',
+    loadChildren: () => import('./pages/wishlist/wishlist.module').then( m => m.WishlistPageModule)
+  },
+  {
+    path: 'cart',
+    loadChildren: () => import('./pages/cart/cart.module').then( m => m.CartPageModule)
+  },
+  {
+    path: 'product-details',
+    loadChildren: () => import('./pages/product-details/product-details.module').then( m => m.ProductDetailsPageModule)
+  },
+  {
+    path: 'all-products',
+    loadChildren: () => import('./pages/all-products/all-products.module').then( m => m.AllProductsPageModule)
   },
 ];
 @NgModule({

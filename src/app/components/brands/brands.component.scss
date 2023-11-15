@@ -1,0 +1,13 @@
+ion-card {
+    box-shadow: none !important;
+    border-radius: 10px !important;
+
+    ion-card-content {
+        .images {
+            border-radius: 10px !important;
+            width: 100% !important;
+            height: 200px !important;
+            object-fit: cover !important;
+        }
+    }
+}

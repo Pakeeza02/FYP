@@ -21,7 +21,7 @@ export class UserRolePage implements OnInit {
 
   // Set the user type and navigate to the specified tab
   selectUserType(userType: string) {
-    this.router.navigateRoot(['/tabs/tab1']);
+    this.router.navigateRoot(['/home']);
     this.dataHelper.userType = userType;
   }
 

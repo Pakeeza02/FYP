@@ -1,0 +1,32 @@
+ion-card {
+    border-radius: 10px !important;
+    box-shadow: none;
+
+    swiper-container {
+        height: 280px !important;
+        width: 100% !important;
+
+        swiper-slide {
+            width: 100% !important;
+            height: 280px !important;
+
+            img {
+                height: 280px !important;
+                width: 100% !important;
+                object-fit: cover !important;
+            }
+        }
+    }
+}
+
+.pTag {
+    font-size: 20px !important;
+}
+
+.desc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+}

@@ -24,7 +24,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       if (localStorage.getItem('userLoggedIn')) {
         // If a user is logged in, navigate to the user-role page
-        this.navCtrl.navigateRoot(['/user-role']);
+        this.navCtrl.navigateRoot(['/home']);
       }
     });
   }

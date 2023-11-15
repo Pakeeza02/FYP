@@ -1,0 +1,17 @@
+.reviewCard1 {
+    display: inline-block;
+    border-radius: 10px !important;
+    // width: 80vw !important;
+    height: 500px !important;
+    white-space: initial;
+    box-shadow: none !important;
+    border: 1px solid #f1f1f1;
+    margin-right: 7px !important;
+
+    .images {
+        border-radius: 10px !important;
+        width: 100vw !important;
+        object-fit: cover !important;
+        height: 500px !important;
+    }
+}
