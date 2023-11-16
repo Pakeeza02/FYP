@@ -1,0 +1,29 @@
+.avatar3 {
+    img {
+        border-radius: 50px !important;
+        height: 100px;
+        width: 100px;
+        object-fit: cover;
+    }
+}
+
+.imageDiv {
+    img {
+        filter: invert(1);
+    }
+}
+
+.reviews-members .media .mr-3 {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+}
+
+.restaurant-detailed-ratings-and-reviews hr {
+    margin: 0 -24px;
+}
+
+.container-fluid {
+    padding-left: 90px !important;
+    padding-right: 90px !important;
+}

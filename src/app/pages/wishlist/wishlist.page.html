@@ -1,13 +1,85 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>wishlist</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">wishlist</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <app-header></app-header>
+  <div style="margin-top: 120px !important;" class="cart-wrap">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <ion-icon color="danger" style="font-size: 100px !important;" name="heart-outline"></ion-icon>
+          </div>
+          <h1 class="bold text-center mb-3 text-dark" style="font-size: 30px;">My Wishlist</h1>
+          <div class="table-wishlist">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+              <thead>
+                <tr>
+                  <th width="45%" style="font-size: 16px;">Product Name</th>
+                  <th width="15%" style="font-size: 16px;">Unit Price</th>
+                  <th width="15%" style="font-size: 16px;">Stock Status</th>
+                  <th width="15%" style="font-size: 16px;">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td width="45%">
+                    <div class="display-flex align-center">
+                      <div class="img-product">
+                        <img
+                          src="https://www.91-img.com/pictures/laptops/asus/asus-x552cl-sx019d-core-i3-3rd-gen-4-gb-500-gb-dos-1-gb-61721-large-1.jpg"
+                          alt="" class="mCS_img_loaded">
+                      </div>
+                      <div class="name-product">
+                        Apple iPad Mini
+                      </div>
+                    </div>
+                  </td>
+                  <td width="15%" class="price">$110.00</td>
+                  <td width="15%"><span class="in-stock-box">In Stock</span></td>
+                  <td width="15%"><button class="round-black-btn small-btn">Add to Cart</button></td>
+                </tr>
+                <tr>
+                  <td width="45%">
+                    <div class="display-flex align-center">
+                      <div class="img-product">
+                        <img
+                          src="https://www.91-img.com/pictures/laptops/asus/asus-x552cl-sx019d-core-i3-3rd-gen-4-gb-500-gb-dos-1-gb-61721-large-1.jpg"
+                          alt="" class="mCS_img_loaded">
+                      </div>
+                      <div class="name-product">
+                        Apple iPad Mini
+                      </div>
+                    </div>
+                  </td>
+                  <td width="15%" class="price">$110.00</td>
+                  <td width="15%"><span class="in-stock-box">In Stock</span></td>
+                  <td width="15%"><button class="round-black-btn small-btn">Add to Cart</button></td>
+                </tr>
+                <tr>
+                  <td width="45%">
+                    <div class="display-flex align-center">
+                      <div class="img-product">
+                        <img
+                          src="https://www.91-img.com/pictures/laptops/asus/asus-x552cl-sx019d-core-i3-3rd-gen-4-gb-500-gb-dos-1-gb-61721-large-1.jpg"
+                          alt="" class="mCS_img_loaded">
+                      </div>
+                      <div class="name-product">
+                        Apple iPad Mini
+                      </div>
+                    </div>
+                  </td>
+                  <td width="15%" class="price">$110.00</td>
+                  <td width="15%"><span class="in-stock-box">In Stock</span></td>
+                  <td width="15%"><button class="round-black-btn small-btn">Add to Cart</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+
 </ion-content>

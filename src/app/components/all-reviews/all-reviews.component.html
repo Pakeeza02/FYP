@@ -1,0 +1,49 @@
+<div class="container-fluid mt-4 mb-4">
+
+  <div class="bg-white container-fluid rounded shadow p-4 mb-4">
+    <h5 class="mb-1">Product Detail</h5>
+  </div>
+
+  <div class="bg-white container-fluid rounded shadow p-4 mb-4">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui non repellendus libero veniam error odit quam ea
+      illum ex tenetur assumenda perferendis doloremque adipisci dolor ab tempore, corrupti omnis, expedita sint.
+      Nam ipsam natus dolorum odit sit repudiandae laudantium rerum autem, quo exercitationem nobis nulla
+      voluptates dolorem molestias! Provident molestiae commodi vero perspiciatis, minima animi et vitae
+      asperiores accusantium quisquam labore, itaque, voluptas nulla ipsa tempora obcaecati amet excepturi officia
+      facilis qui voluptatum cumque. Placeat esse quae ut ex! Non exercitationem accusamus sed consequuntur soluta
+      obcaecati cum possimus ullam dolores, voluptatem quod modi iusto aliquid, voluptate, voluptatum tempora quae
+      iure.</p>
+  </div>
+
+  <div class="bg-white container-fluid rounded shadow p-4 mb-4">
+    <h5 class="mb-1">All Ratings and Reviews</h5>
+  </div>
+  <div class="bg-white container-fluid rounded shadow p-4 mb-4 restaurant-detailed-ratings-and-reviews">
+
+    <div *ngFor="let reviews of reviewList" class="reviews-members pt-4 pb-4">
+      <div class="media">
+        <a href="#"><img alt="Generic placeholder image" src={{reviews.image}} class="mr-3 rounded-pill"></a>
+        <div class="media-body">
+          <div class="reviews-members-header">
+            <h6 class="mb-1"><a class="text-black" href="#">{{reviews.name}}</a></h6>
+            <p class="text-gray mb-0">{{reviews.date}}</p>
+            <span class="badge text-center mb-3 bg-secondary">
+              <div style="display: inline-block;">
+                <i class="fa text-warning fa-solid fa-star"></i>
+                <i class="fa text-warning fa-solid fa-star"></i>
+                <i class="fa text-warning fa-solid fa-star"></i>
+                <i class="fa text-warning fa-solid fa-star"></i>
+                <i class="fa text-light fa-regular fa-star"></i>
+              </div>
+              (4)
+            </span>
+          </div>
+          <div class="reviews-members-body">
+            <p>{{reviews.description}}</p>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>

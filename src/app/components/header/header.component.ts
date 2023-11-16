@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
 import { DataHelperService } from 'src/app/services/data-helper.service';
 import { UserAuthService } from 'src/app/services/user-auth.service';
 
@@ -21,6 +20,14 @@ export class HeaderComponent implements OnInit {
 
   allProducts() {
     this.route.navigate(['/all-products'])
+  }
+
+  wishlist() {
+    this.route.navigate(['/wishlist'])
+  }
+
+  cart() {
+    this.route.navigate(['/cart'])
   }
 
 }

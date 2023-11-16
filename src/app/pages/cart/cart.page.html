@@ -1,13 +1,56 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>cart</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">cart</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <app-header></app-header>
+  <div style="margin-top: 170px !important;">
+    <div class="text-center">
+      <ion-icon color="dark" style="font-size: 100px !important;" name="cart-outline"></ion-icon>
+    </div>
+    <h1 class="bold text-center mb-2 text-dark" style="font-size: 30px;">My Cart</h1>
+  </div>
+  <div class="card mb-4">
+    <div class="row">
+      <div class="col-md-8 cart">
+        <ion-item lines="full" class="ion-no-padding" *ngFor="let cart of [1,2,3,4]">
+          <ion-thumbnail class="shadow" slot="start"
+            style="height: 100px !important;width: 100px !important;border-radius: 10px !important;">
+            <img
+              style="height: 100px !important;width: 100px !important;border-radius: 10px !important;object-fit: cover !important;"
+              src="https://static-01.daraz.pk/p/1b1122512e26d12a4166714c00020f2e.jpg" alt="">
+          </ion-thumbnail>
+          <ion-label>
+            <h1 class="bold">Nail Polish</h1>
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
+          </ion-label>
+          <ion-button expand="block" color="dark" class="ms-2"
+            style="font-size: 10px !important;width: 190px !important;">132*1</ion-button>
+        </ion-item>
+        <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+      </div>
+      <div class="col-md-4 summary">
+        <div>
+          <h5><b>Summary</b></h5>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col" style="padding-left:0;">ITEMS 3</div>
+          <div class="col text-right">&euro; 132.00</div>
+        </div>
+        <form>
+          <p>SHIPPING</p>
+          <select>
+            <option class="text-muted">Standard-Delivery- &euro;5.00</option>
+          </select>
+          <p>GIVE CODE</p>
+          <input id="code" placeholder="Enter your code">
+        </form>
+        <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+          <div class="col">TOTAL PRICE</div>
+          <div class="col text-right">$137.00</div>
+        </div>
+        <button class="btn" (click)="orderPlaced()">CHECKOUT</button>
+      </div>
+    </div>
+
+  </div>
+  <app-footer></app-footer>
 </ion-content>

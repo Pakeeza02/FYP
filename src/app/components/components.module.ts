@@ -8,6 +8,7 @@ import { ProductListingComponent } from './product-listing/product-listing.compo
 import { CategoriesComponent } from './categories/categories.component';
 import { BrandsComponent } from './brands/brands.component';
 import { RecommendedProductsComponent } from './recommended-products/recommended-products.component';
+import { AllReviewsComponent } from './all-reviews/all-reviews.component';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -18,7 +19,8 @@ import { RecommendedProductsComponent } from './recommended-products/recommended
     ProductListingComponent,
     CategoriesComponent,
     RecommendedProductsComponent,
-    BrandsComponent
+    BrandsComponent,
+    AllReviewsComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ import { RecommendedProductsComponent } from './recommended-products/recommended
     ImgSliderComponent,
     FooterComponent,
     RecommendedProductsComponent,
+    AllReviewsComponent,
     ProductListingComponent,
     CategoriesComponent,
     BrandsComponent
