@@ -905,3 +905,21 @@ body {
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap");
+
+.pName {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    /* Number of lines to show */
+    text-overflow: ellipsis;
+}
+
+.pDescription {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    /* Number of lines to show */
+    text-overflow: ellipsis;
+}

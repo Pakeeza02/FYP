@@ -18,10 +18,10 @@
 
   <ion-item (click)="chatScreen(chat)" *ngFor="let chat of chatList" [ngClass]="{'hidden-item': !chatVisible(chat)}">
     <ion-thumbnail>
-      <img style="border-radius: 8px;" [src]="getVehicleImage(chat.vehicleId)" alt="Image">
+      <img style="border-radius: 8px;" [src]="getproductImage(chat.productId)" alt="Image">
     </ion-thumbnail>
     <ion-label class="ion-margin-start">
-      <h2>{{getVehicleTitle(chat) | titlecase}}</h2>
+      <h2>{{getproductTitle(chat) | titlecase}}</h2>
       <h3>{{getReceiverName(chat) | titlecase}}</h3>
       <p>{{chat.lastMessage}}</p>
     </ion-label>

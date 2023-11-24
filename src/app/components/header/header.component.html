@@ -19,24 +19,19 @@
                 </li>
                 <li class="nav-item ms-3">
                   <a style="cursor: pointer !important;" class="nav-link active text-dark"
-                    routerLink="/services">Services</a>
-                </li>
-                <li class="nav-item ms-3">
-                  <a style="cursor: pointer !important;" class="nav-link active text-dark"
                     (click)="wishlist()">Wishlist</a>
                 </li>
                 <li class="nav-item ms-3">
                   <a style="cursor: pointer !important;" class="nav-link active text-dark" (click)="cart()">Cart</a>
                 </li>
                 <li class="nav-item ms-3">
-                  <a style="cursor: pointer !important;" class="nav-link active text-dark" routerLink="/about">About
-                    Us</a>
-                </li>
-                <li class="nav-item ms-3">
                   <button routerLink="/contact-us" class="btn btn-success mb-1">Contact</button>
                 </li>
-                <li class="nav-item ms-3">
-                  <button (click)="userAuth.logoutUser()" class="btn  btn-primary">Login</button>
+                <li class="nav-item ms-1">
+                  <button *ngIf="userAuth.isLogin" (click)="userAuth.logoutUser()" class="btn  btn-primary">Login</button>
+                </li>
+                <li class="nav-item ms-1">
+                  <button *ngIf="!userAuth.isLogin" (click)="userAuth.logoutUser()" class="btn  btn-danger">logout</button>
                 </li>
               </ul>
             </div>

@@ -23,36 +23,36 @@ export class AddCarPage implements OnInit {
     public utils: UtilsProviderService,
     public userAuth: UserAuthService
   ) {
-    this.price = this.dataHelper.vehicleDetails.carPrice ?? 1;
+    this.price = this.dataHelper.productDetails.carPrice ?? 1;
     this.carInfoForm = this.formBuilder.group({
-      vehicleName: [this.dataHelper.vehicleDetails.vehicleName, Validators.compose([
+      productName: [this.dataHelper.productDetails.productName, Validators.compose([
         Validators.required
       ])],
-      vehicleDescription: [this.dataHelper.vehicleDetails.vehicleDescription, Validators.compose([
+      productDescription: [this.dataHelper.productDetails.productDescription, Validators.compose([
         Validators.required
       ])],
-      vehicleModel: [this.dataHelper.vehicleDetails.vehicleModel, Validators.compose([
+      productModel: [this.dataHelper.productDetails.productModel, Validators.compose([
         Validators.required
       ])],
-      vehicleCompany: [this.dataHelper.vehicleDetails.vehicleCompany, Validators.compose([
+      productCompany: [this.dataHelper.productDetails.productCompany, Validators.compose([
         Validators.required
       ])],
-      vehicleRegYear: [this.dataHelper.vehicleDetails.vehicleRegYear, Validators.compose([
+      productRegYear: [this.dataHelper.productDetails.productRegYear, Validators.compose([
         Validators.required
       ])],
-      carburant: [this.dataHelper.vehicleDetails.carburant, Validators.compose([
+      carburant: [this.dataHelper.productDetails.carburant, Validators.compose([
         Validators.required
       ])],
-      transmission: [this.dataHelper.vehicleDetails.transmission, Validators.compose([
+      transmission: [this.dataHelper.productDetails.transmission, Validators.compose([
         Validators.required
       ])],
-      location: [this.dataHelper.vehicleDetails.location, Validators.compose([
+      location: [this.dataHelper.productDetails.location, Validators.compose([
         Validators.required
       ])],
-      registrationNumber: [this.dataHelper.vehicleDetails.registrationNumber, Validators.compose([
+      registrationNumber: [this.dataHelper.productDetails.registrationNumber, Validators.compose([
         Validators.required
       ])],
-      mileage: [this.dataHelper.vehicleDetails.mileage, Validators.compose([
+      mileage: [this.dataHelper.productDetails.mileage, Validators.compose([
         Validators.required
       ])],
     });
@@ -70,11 +70,11 @@ export class AddCarPage implements OnInit {
     this.price = e.detail.value.upper;
   }
 
-  // Save the vehicle information and navigate to the next step
-  saveVehicleInfo() {
+  // Save the product information and navigate to the next step
+  saveproductInfo() {
     const formData = this.carInfoForm.value;
-    this.dataHelper.vehicleDetails.carPrice = this.price;
-    this.dataHelper.vehicleDetails = { ...this.dataHelper?.vehicleDetails, ...formData };
+    this.dataHelper.productDetails.carPrice = this.price;
+    this.dataHelper.productDetails = { ...this.dataHelper?.productDetails, ...formData };
     this.navCtrl.navigateForward(['/upload-car']);
   }
 

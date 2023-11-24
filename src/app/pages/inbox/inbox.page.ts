@@ -84,7 +84,7 @@ export class InboxPage implements OnInit {
   saveHostAndClientIds() {
     const updates = {};
     updates[`/chats/${this.chatId}/chatKey`] = this.chatId;
-    updates[`/chats/${this.chatId}/vehicleId`] = this.dataHelper.selectedChat.vehicleId;
+    updates[`/chats/${this.chatId}/productId`] = this.dataHelper.selectedChat.productId;
     updates[`/chats/${this.chatId}/hostUid`] = this.dataHelper.selectedChat.hostUid;
     updates[`/chats/${this.chatId}/clientUid`] = this.dataHelper.selectedChat.clientUid;
     firebase.database().ref().update(updates);

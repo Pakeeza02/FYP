@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController } from '@ionic/angular';
 import { iChatNode } from 'src/app/models/chat';
 import { iUser } from 'src/app/models/user';
-import { iVehicle } from 'src/app/models/vehicle';
+import { iProduct } from 'src/app/models/vehicle';
 import { DataHelperService } from 'src/app/services/data-helper.service';
 import { UserAuthService } from 'src/app/services/user-auth.service';
 import { UtilsProviderService } from 'src/app/services/utils-provider.service';
@@ -16,9 +16,9 @@ export class CarDetailPage implements OnInit {
 
   user: iUser = new iUser();
   currentUser: iUser = new iUser();
-  isMyVehicle: boolean;
-  vehicleHost: iUser = new iUser();
-  vehicleDetails: iVehicle = new iVehicle();
+  isMyproduct: boolean;
+  productHost: iUser = new iUser();
+  productDetails: iProduct = new iProduct();
 
   constructor(
     public alertController: AlertController,
@@ -29,10 +29,10 @@ export class CarDetailPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Initialize the component with vehicle details and user information
-    this.vehicleDetails = this.dataHelper.vehicleDetails;
-    this.vehicleHost = this.dataHelper.allUsers[this.vehicleDetails.hostUid];
-    this.isMyVehicle = this.dataHelper.vehicleDetails.hostUid === this.userAuth.currentUser.uid;
+    // Initialize the component with product details and user information
+    this.productDetails = this.dataHelper.productDetails;
+    this.productHost = this.dataHelper.allUsers[this.productDetails.hostUid];
+    this.isMyproduct = this.dataHelper.productDetails.hostUid === this.userAuth.currentUser.uid;
     this.currentUser = this.userAuth.currentUser;
   }
 
@@ -54,7 +54,7 @@ export class CarDetailPage implements OnInit {
           cssClass: 'danger',
           role: 'confirm',
           handler: () => {
-            this.removeVehicleFromFirebase();
+            this.removeproductFromFirebase();
           },
         },
       ],
@@ -62,28 +62,28 @@ export class CarDetailPage implements OnInit {
     await alert.present();
   }
 
-  // Remove the vehicle details from Firebase
-  removeVehicleFromFirebase() {
-    const urlPath = `vehicles/${this.vehicleDetails.vehicleId}`;
+  // Remove the product details from Firebase
+  removeproductFromFirebase() {
+    const urlPath = `products/${this.productDetails.productId}`;
     this.dataHelper.updateDataOnFirebase(urlPath, null)
       .then(() => {
         this.utils.createToast('Car deleted successfully');
-        this.dataHelper.getAllVehicles();
+        this.dataHelper.getAllproducts();
         this.navCtrl.navigateRoot(['/tabs/tab1']);
       });
   }
 
-  // Open a chat with the vehicle owner
+  // Open a chat with the product owner
   openChat() {
-    const chatKey = this.userAuth.currentUser.uid.concat(this.vehicleDetails.vehicleId);
+    const chatKey = this.userAuth.currentUser.uid.concat(this.productDetails.productId);
     let chatNode: iChatNode = this.dataHelper.myChats.find(x => x.chatKey === chatKey);
     // Check if a chat already exists, if not, create a new chat node
     if (!chatNode) {
       chatNode = new iChatNode();
       chatNode.chatKey = chatKey;
       chatNode.clientUid = this.userAuth.currentUser.uid;
-      chatNode.hostUid = this.vehicleDetails.hostUid;
-      chatNode.vehicleId = this.vehicleDetails.vehicleId;
+      chatNode.hostUid = this.productDetails.hostUid;
+      chatNode.productId = this.productDetails.productId;
     }
     this.dataHelper.selectedChat = chatNode;
     // and navigate to the chat screen

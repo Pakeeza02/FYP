@@ -13,45 +13,45 @@
 
     <ion-card class="ion-no-margin">
       <ion-item lines="none">
-        <ion-input formControlName="vehicleName" type="text" placeholder="Car Title"></ion-input>
+        <ion-input formControlName="productName" type="text" placeholder="Car Title"></ion-input>
       </ion-item>
     </ion-card>
-    <p class="errorMsg" *ngIf="carInfoForm.get('vehicleName').hasError('required') &&
-    (carInfoForm.get('vehicleName').dirty || carInfoForm.get('vehicleName').touched)">
+    <p class="errorMsg" *ngIf="carInfoForm.get('productName').hasError('required') &&
+    (carInfoForm.get('productName').dirty || carInfoForm.get('productName').touched)">
       *This field is required!
     </p>
 
     <ion-card class="ion-no-margin">
       <ion-item lines="none">
-        <ion-textarea formControlName="vehicleDescription" rows="5" cols="20" placeholder="Description"></ion-textarea>
+        <ion-textarea formControlName="productDescription" rows="5" cols="20" placeholder="Description"></ion-textarea>
       </ion-item>
     </ion-card>
-    <p class="errorMsg" *ngIf="carInfoForm.get('vehicleDescription').hasError('required') &&
-  (carInfoForm.get('vehicleDescription').dirty || carInfoForm.get('vehicleDescription').touched)">
+    <p class="errorMsg" *ngIf="carInfoForm.get('productDescription').hasError('required') &&
+  (carInfoForm.get('productDescription').dirty || carInfoForm.get('productDescription').touched)">
       *This field is required!
     </p>
 
     <ion-card class="ion-no-margin">
       <ion-item lines="none">
-        <ion-select formControlName="vehicleCompany" placeholder="Car Company" multiple="false">
+        <ion-select formControlName="productCompany" placeholder="Car Company" multiple="false">
           <ion-select-option *ngFor="let company of dataHelper.carCompany">{{company}}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-card>
-    <p class="errorMsg" *ngIf="carInfoForm.get('vehicleCompany').hasError('required') &&
-  (carInfoForm.get('vehicleCompany').dirty || carInfoForm.get('vehicleCompany').touched)">
+    <p class="errorMsg" *ngIf="carInfoForm.get('productCompany').hasError('required') &&
+  (carInfoForm.get('productCompany').dirty || carInfoForm.get('productCompany').touched)">
       *This field is required!
     </p>
 
     <ion-card class="ion-no-margin">
       <ion-item lines="none">
-        <ion-select formControlName="vehicleModel" placeholder="Car Model" multiple="false">
+        <ion-select formControlName="productModel" placeholder="Car Model" multiple="false">
           <ion-select-option *ngFor="let model of dataHelper.carModels">{{model}}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-card>
-    <p class="errorMsg" *ngIf="carInfoForm.get('vehicleModel').hasError('required') &&
-  (carInfoForm.get('vehicleModel').dirty || carInfoForm.get('vehicleModel').touched)">
+    <p class="errorMsg" *ngIf="carInfoForm.get('productModel').hasError('required') &&
+  (carInfoForm.get('productModel').dirty || carInfoForm.get('productModel').touched)">
       *This field is required!
     </p>
 
@@ -121,14 +121,14 @@
 
     <ion-card class="ion-no-margin">
       <ion-item lines="none">
-        <ion-select formControlName="vehicleRegYear" placeholder="Registration Year" multiple="false">
+        <ion-select formControlName="productRegYear" placeholder="Registration Year" multiple="false">
           <ion-select-option *ngFor="let number of dataHelper.registrationYear" [value]="number">{{number}}
           </ion-select-option>
         </ion-select>
       </ion-item>
     </ion-card>
-    <p class="errorMsg" *ngIf="carInfoForm.get('vehicleRegYear').hasError('required') &&
-  (carInfoForm.get('vehicleRegYear').dirty || carInfoForm.get('vehicleRegYear').touched)">
+    <p class="errorMsg" *ngIf="carInfoForm.get('productRegYear').hasError('required') &&
+  (carInfoForm.get('productRegYear').dirty || carInfoForm.get('productRegYear').touched)">
       *This field is required!
     </p>
 
@@ -142,7 +142,7 @@
       *This field is required!
     </p>
 
-    <ion-button [disabled]="!carInfoForm.valid" (click)="saveVehicleInfo()" class="ion-margin-top" expand="block"
+    <ion-button [disabled]="!carInfoForm.valid" (click)="saveproductInfo()" class="ion-margin-top" expand="block"
       color="primary">Next</ion-button>
 
   </div>

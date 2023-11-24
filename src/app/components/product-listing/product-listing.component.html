@@ -4,16 +4,16 @@
       <h1 class="text-dark">Grab the best<b class="primary-text"> Recommended Products</b></h1>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2">
-      <h4 class="text-primary text-end">View All</h4>
+      <h4 (click)="allProduct()" style="cursor: pointer !important;" class="text-primary text-end">View All</h4>
     </div>
   </div>
 </div>
 
 <hr>
 
-<div class="container-fluid" *ngIf="myVehicles.length">
+<div class="container-fluid" *ngIf="myproducts.length">
   <div class="scrollHorizontal mb-1">
-    <ion-card *ngFor="let car of myVehicles" class="ion-no-margin reviewCard">
+    <ion-card *ngFor="let car of myproducts" class="ion-no-margin reviewCard">
       <ion-card-content class="ion-no-padding">
         <swiper-container pagination="true">
           <swiper-slide>
@@ -27,8 +27,8 @@
 
           <ion-item style="--background: transparent !important;" lines="none" class="ion-no-padding">
             <ion-label>
-              <h3 class="ion-no-margin bold">
-                <ion-text color="dark">{{car?.vehicleName | titlecase}}</ion-text>
+              <h3 class="ion-no-margin pName bold">
+                <ion-text color="dark">{{car?.productName | titlecase}}</ion-text>
               </h3>
               <p>
                 <ion-text color="medium">{{car?.location}}</ion-text>
@@ -60,10 +60,10 @@
 
             <ion-item style="--background: transparent !important;" lines="none" class="ion-no-padding">
               <ion-label class="ion-text-wrap">
-                <h2 class="ion-no-margin pTag bold">
+                <h2 class="ion-no-margin pName pTag bold">
                   <ion-text color="dark">{{product.title | titlecase}}</ion-text>
                 </h2>
-                <p class="mb-1">
+                <p class="mb-1 pDescription">
                   <ion-text color="medium">{{product.description}}</ion-text>
                 </p>
                 <hr>

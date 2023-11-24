@@ -4,7 +4,7 @@ import { iUser } from '../models/user';
 import { UtilsProviderService } from './utils-provider.service';
 import { Subject } from 'rxjs';
 import firebase from 'firebase';
-import { iVehicle, iVehicleStatus } from '../models/vehicle';
+import { iProduct } from '../models/vehicle';
 import { iFilter } from '../models/filter';
 import { NavController } from '@ionic/angular';
 
@@ -13,23 +13,23 @@ import { NavController } from '@ionic/angular';
 })
 export class DataHelperService {
 
-  vehicleDetails: iVehicle = new iVehicle();
+  productDetails: iProduct = new iProduct();
   myChats: iChatNode[] = [];
   selectedChat: iChatNode;
-  allVehicles: iVehicle[] = [];
+  allproducts: iProduct[] = [];
   showInfoSavedPopup: boolean;
   registrationYear: number[] = [];
   carCompany: string[] = ['Toyota', 'Honda', 'Suzuki', 'KIA', 'Hyundai', 'Nissan', 'Mitsubishi', 'Mercedes-Benz', 'Audi', 'BMW',];
   carModels: string[] = ['Toyota Corolla', 'Honda Civic', 'Suzuki Alto', 'KIA Sportage', 'Hyundai Tucson', 'Nissan Sunny', 'Mitsubishi Mirage', 'Mercedes-Benz C-Class', 'Audi A3', 'BMW 3 Series'];
   userType: string;
-  allCars: iVehicle[] = [];
+  allCars: iProduct[] = [];
   firebaseStorageUrl = 'https://firebasestorage';
   appliedFilters: iFilter;
   userAvatar = 'assets/images/profile.jpg'
   fooSubject = new Subject<any>();
   allUsers: any = {};
   currentUser: iUser = new iUser();
-  vehiclesFetched: boolean;
+  productsFetched: boolean;
 
   constructor(
     public utils: UtilsProviderService,
@@ -46,10 +46,10 @@ export class DataHelperService {
     }
   }
 
-  // Fetch all user and vehicle data when the service is constructed
+  // Fetch all user and product data when the service is constructed
   fetchAllData() {
     this.getAllUsers();
-    this.getAllVehicles();
+    this.getAllproducts();
   }
 
   // Retrieve all user data from Firebase
@@ -74,21 +74,21 @@ export class DataHelperService {
       });
   }
 
-  // Retrieve all vehicle data from Firebase
-  getAllVehicles() {
-    this.vehiclesFetched = false;
-    this.getFirebaseData('vehicles')
+  // Retrieve all product data from Firebase
+  getAllproducts() {
+    this.productsFetched = false;
+    this.getFirebaseData('products')
       .then((snapshot) => {
-        this.allVehicles = [];
-        const vehicles = snapshot.val() || {};
-        for (const key in vehicles) {
-          const vehicle: iVehicle = vehicles[key];
-          this.allVehicles.push(vehicle);
+        this.allproducts = [];
+        const products = snapshot.val() || {};
+        for (const key in products) {
+          const product: iProduct = products[key];
+          this.allproducts.push(product);
         }
         this.utils.stopLoading();
         this.getMyChats();
-        this.vehiclesFetched = true;
-        this.publishSomeData({ vehiclesFetched: true });
+        this.productsFetched = true;
+        this.publishSomeData({ productsFetched: true });
       });
   }
 
@@ -133,141 +133,141 @@ export class DataHelperService {
     }
   }
 
-  // Apply filters to the list of vehicles and return the filtered list
-  filterVehicles() {
+  // Apply filters to the list of products and return the filtered list
+  filterproducts() {
     const filters = this.appliedFilters;
     if (!filters) {
-      return this.allVehicles;
+      return this.allproducts;
     }
 
-    let filteredVehicles: iVehicle[] = this.allVehicles;
+    let filteredproducts: iProduct[] = this.allproducts;
 
     if (filters?.minPrice) {
-      filteredVehicles = filteredVehicles.filter(x =>
+      filteredproducts = filteredproducts.filter(x =>
         Number(x?.carPrice) >= Number(filters?.minPrice) && Number(x?.carPrice) <= Number(filters?.maxPrice)
       );
     }
 
     if (filters?.minMileage) {
-      filteredVehicles = filteredVehicles.filter(x =>
+      filteredproducts = filteredproducts.filter(x =>
         Number(x?.mileage) >= Number(filters?.minMileage) && Number(x?.mileage) <= Number(filters?.maxMileage)
       );
     }
 
     if (filters?.minYear) {
-      filteredVehicles = filteredVehicles.filter(x =>
-        Number(x?.vehicleRegYear) >= Number(filters?.minYear) && Number(x?.vehicleRegYear) <= Number(filters?.maxYear)
+      filteredproducts = filteredproducts.filter(x =>
+        Number(x?.productRegYear) >= Number(filters?.minYear) && Number(x?.productRegYear) <= Number(filters?.maxYear)
       );
     }
 
     if (filters.company !== 'all') {
-      filteredVehicles = filteredVehicles.filter(x =>
-        x.vehicleCompany.toLowerCase() === filters.company.toLowerCase()
+      filteredproducts = filteredproducts.filter(x =>
+        x.productCompany.toLowerCase() === filters.company.toLowerCase()
       );
     }
 
     if (filters.model !== 'all') {
-      filteredVehicles = filteredVehicles.filter(x =>
-        x.vehicleModel?.toLowerCase() === filters.model.toLowerCase()
+      filteredproducts = filteredproducts.filter(x =>
+        x.productModel?.toLowerCase() === filters.model.toLowerCase()
       );
     }
 
     if (filters.carburant !== 'all') {
-      filteredVehicles = filteredVehicles.filter(x =>
+      filteredproducts = filteredproducts.filter(x =>
         x.carburant.toLowerCase() === filters.carburant.toLowerCase()
       );
     }
 
     if (filters.transmission !== 'all') {
-      filteredVehicles = filteredVehicles.filter(x =>
+      filteredproducts = filteredproducts.filter(x =>
         x.transmission.toLowerCase() === filters.transmission.toLowerCase()
       );
     }
 
     if (filters.location !== 'all') {
-      filteredVehicles = filteredVehicles.filter(x =>
+      filteredproducts = filteredproducts.filter(x =>
         x.location.toLowerCase() === filters.location.toLowerCase()
       );
     }
 
-    return filteredVehicles;
+    return filteredproducts;
   }
 
-  // Upload vehicle files to Firebase storage, including car document and images
-  uploadVehicleFiles() {
-    if (!this.vehicleDetails.carDocument.match(this.firebaseStorageUrl)) {
-      this.utils.uploadImageOnFirebase(this.vehicleDetails.carDocument, 'carDocument')
+  // Upload product files to Firebase storage, including car document and images
+  uploadproductFiles() {
+    if (!this.productDetails.carDocument.match(this.firebaseStorageUrl)) {
+      this.utils.uploadImageOnFirebase(this.productDetails.carDocument, 'carDocument')
         .then((url: string) => {
-          this.vehicleDetails.carDocument = url;
-          this.uploadVehicleFiles();
+          this.productDetails.carDocument = url;
+          this.uploadproductFiles();
         });
-    } else if (!this.vehicleDetails.coverImageUrl.match(this.firebaseStorageUrl)) {
-      this.utils.uploadImageOnFirebase(this.vehicleDetails.coverImageUrl, 'vehicleImages')
+    } else if (!this.productDetails.coverImageUrl.match(this.firebaseStorageUrl)) {
+      this.utils.uploadImageOnFirebase(this.productDetails.coverImageUrl, 'productImages')
         .then((url: string) => {
-          this.vehicleDetails.coverImageUrl = url;
-          this.uploadVehicleFiles();
+          this.productDetails.coverImageUrl = url;
+          this.uploadproductFiles();
         });
-    } else if (this.vehicleDetails.imageUrls?.length && this.isAnyNewVehicleImagePicked()) {
-      const vehicleImages: string[] = this.deepCloneData(this.vehicleDetails.imageUrls) || [];
-      this.vehicleDetails.imageUrls = [];
+    } else if (this.productDetails.imageUrls?.length && this.isAnyNewproductImagePicked()) {
+      const productImages: string[] = this.deepCloneData(this.productDetails.imageUrls) || [];
+      this.productDetails.imageUrls = [];
       let newImages = [];
-      vehicleImages.forEach(x => {
+      productImages.forEach(x => {
         if (x.match(this.firebaseStorageUrl)) {
-          this.vehicleDetails.imageUrls.push(x);
+          this.productDetails.imageUrls.push(x);
         } else {
           newImages.push(x);
         }
       });
-      newImages.length ? this.uploadVehicleImages(newImages) : this.uploadVehicleFiles();
+      newImages.length ? this.uploadproductImages(newImages) : this.uploadproductFiles();
     } else {
-      this.saveVehicleDetailOnFirebase();
+      this.saveproductDetailOnFirebase();
     }
   }
 
-  // Upload new vehicle images to Firebase storage
-  uploadVehicleImages(newImages: string[]) {
-    this.utils.uploadImageOnFirebase(newImages[0], 'vehicleImages')
+  // Upload new product images to Firebase storage
+  uploadproductImages(newImages: string[]) {
+    this.utils.uploadImageOnFirebase(newImages[0], 'productImages')
       .then((url: string) => {
-        this.vehicleDetails.imageUrls.push(url);
+        this.productDetails.imageUrls.push(url);
         newImages.splice(0, 1);
-        newImages.length ? this.uploadVehicleImages(newImages) : this.uploadVehicleFiles();
+        newImages.length ? this.uploadproductImages(newImages) : this.uploadproductFiles();
       });
   }
 
-  // Save vehicle details to Firebase database
-  saveVehicleDetailOnFirebase() {
+  // Save product details to Firebase database
+  saveproductDetailOnFirebase() {
     const myUid = localStorage.getItem('uid');
-    if (!this.vehicleDetails.vehicleId) {
-      this.vehicleDetails.vehicleId = firebase.database().ref().child('vehicles').push().key;
-      this.vehicleDetails.hostUid = myUid;
-      this.vehicleDetails.createdOn = Number(new Date());
+    if (!this.productDetails.productId) {
+      this.productDetails.productId = firebase.database().ref().child('products').push().key;
+      this.productDetails.hostUid = myUid;
+      this.productDetails.createdOn = Number(new Date());
     }
 
-    const urlPath = `vehicles/${this.vehicleDetails.vehicleId}`;
-    this.updateDataOnFirebase(urlPath, this.vehicleDetails).then(() => {
-      const index = this.allVehicles.findIndex(x => x.vehicleId === this.vehicleDetails.vehicleId);
-      index >= 0 ? this.allVehicles[index] = this.vehicleDetails : this.allVehicles.push(this.vehicleDetails);
-      this.vehicleDetails = new iVehicle();
+    const urlPath = `products/${this.productDetails.productId}`;
+    this.updateDataOnFirebase(urlPath, this.productDetails).then(() => {
+      const index = this.allproducts.findIndex(x => x.productId === this.productDetails.productId);
+      index >= 0 ? this.allproducts[index] = this.productDetails : this.allproducts.push(this.productDetails);
+      this.productDetails = new iProduct();
       this.utils.stopLoading();
       this.showInfoSavedPopup = true;
-      this.publishSomeData({ vehiclesFetched: true });
+      this.publishSomeData({ productsFetched: true });
     });
   }
 
-  // Check if any new vehicle images were picked
-  isAnyNewVehicleImagePicked(): boolean {
-    const index = this.vehicleDetails.imageUrls.findIndex(x => !x.match(this.firebaseStorageUrl));
+  // Check if any new product images were picked
+  isAnyNewproductImagePicked(): boolean {
+    const index = this.productDetails.imageUrls.findIndex(x => !x.match(this.firebaseStorageUrl));
     return index >= 0;
   }
 
   // Check if the car document has changed
   isAnyDocumentChanged(): boolean {
-    return !this.vehicleDetails.carDocument.match(this.firebaseStorageUrl);
+    return !this.productDetails.carDocument.match(this.firebaseStorageUrl);
   }
 
   // Check if a new cover image was picked
   isNewCoverImagePicked(): boolean {
-    return !this.vehicleDetails.coverImageUrl.match(this.firebaseStorageUrl);
+    return !this.productDetails.coverImageUrl.match(this.firebaseStorageUrl);
   }
 
   // Deep clone an object

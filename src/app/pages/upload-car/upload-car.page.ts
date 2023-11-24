@@ -22,9 +22,9 @@ export class UploadCarPage implements OnInit {
     public utils: UtilsProviderService,
     public userAuth: UserAuthService
   ) {
-    // Initialize the imageUrls array in vehicleDetails if not already initialized
-    if (!this.dataHelper.vehicleDetails.imageUrls) {
-      this.dataHelper.vehicleDetails.imageUrls = [];
+    // Initialize the imageUrls array in productDetails if not already initialized
+    if (!this.dataHelper.productDetails.imageUrls) {
+      this.dataHelper.productDetails.imageUrls = [];
     }
   }
 
@@ -37,15 +37,15 @@ export class UploadCarPage implements OnInit {
       if (res) {
         switch (fileType) {
           case fileTypes.CAR_DOCUMENT: {
-            this.dataHelper.vehicleDetails.carDocument = res;
+            this.dataHelper.productDetails.carDocument = res;
             return;
           }
           case fileTypes.COVER_IMAGE: {
-            this.dataHelper.vehicleDetails.coverImageUrl = res;
+            this.dataHelper.productDetails.coverImageUrl = res;
             break;
           }
           default: {
-            this.dataHelper.vehicleDetails.imageUrls.push(res);
+            this.dataHelper.productDetails.imageUrls.push(res);
           }
         }
       }
@@ -54,27 +54,27 @@ export class UploadCarPage implements OnInit {
     }
   }
 
-  // Saves vehicle documents, validates and uploads the images and documents
+  // Saves product documents, validates and uploads the images and documents
   saveDocuments() {
-    if (!this.dataHelper.vehicleDetails.carDocument) {
+    if (!this.dataHelper.productDetails.carDocument) {
       this.utils.createToast('Please attach car document');
-    } else if (!this.dataHelper.vehicleDetails.coverImageUrl) {
+    } else if (!this.dataHelper.productDetails.coverImageUrl) {
       this.utils.createToast('Add car image');
     } else {
       if (
-        this.dataHelper.isAnyNewVehicleImagePicked() ||
+        this.dataHelper.isAnyNewproductImagePicked() ||
         this.dataHelper.isNewCoverImagePicked() ||
         this.dataHelper.isAnyDocumentChanged()
       ) {
         this.utils.presentLoading('Saving Files...!');
       }
-      this.dataHelper.uploadVehicleFiles();
+      this.dataHelper.uploadproductFiles();
     }
   }
 
   // Removes an image from the imageUrls array based on its index
   removeImg(index: number) {
-    this.dataHelper.vehicleDetails.imageUrls.splice(index, 1);
+    this.dataHelper.productDetails.imageUrls.splice(index, 1);
   }
 
 }

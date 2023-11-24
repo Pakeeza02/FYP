@@ -77,7 +77,11 @@ const routes: Routes = [
   {
     path: 'all-products',
     loadChildren: () => import('./pages/all-products/all-products.module').then( m => m.AllProductsPageModule)
+  },  {
+    path: 'all-brands',
+    loadChildren: () => import('./pages/all-brands/all-brands.module').then( m => m.AllBrandsPageModule)
   },
+
 ];
 @NgModule({
   imports: [

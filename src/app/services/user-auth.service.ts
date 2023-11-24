@@ -14,6 +14,7 @@ export class UserAuthService {
 
   currentUser: iUser = new iUser();
   fooSubject = new Subject<any>();
+  isLogin:any;
 
   currentUserLocation = {
     userLat: null,
@@ -68,7 +69,8 @@ export class UserAuthService {
 
   // Check if a user is currently logged in
   isLoggedIn(): boolean {
-    return localStorage.getItem('userLoggedIn') === 'true';
+    this.isLogin = localStorage.getItem('userLoggedIn') === 'true';
+    return this.isLogin;
   }
 
   // Get an observable for the Subject

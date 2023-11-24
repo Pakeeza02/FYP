@@ -9,7 +9,7 @@ export class iMessage {
 export class iChatNode {
     clientUid: string;
     hostUid: string;
-    vehicleId: string;
+    productId: string;
     messages: any;
     lastDeleted: any;
     chatKey: string;

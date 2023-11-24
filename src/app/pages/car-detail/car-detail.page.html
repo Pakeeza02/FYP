@@ -17,10 +17,10 @@
   <div class="details">
     <swiper-container pagination="true">
       <swiper-slide>
-        <img class="image" [src]="vehicleDetails?.coverImageUrl">
+        <img class="image" [src]="productDetails?.coverImageUrl">
       </swiper-slide>
 
-      <swiper-slide *ngFor="let img of vehicleDetails?.imageUrls; index as i">
+      <swiper-slide *ngFor="let img of productDetails?.imageUrls; index as i">
         <img class="image" [src]="img">
       </swiper-slide>
     </swiper-container>
@@ -29,18 +29,18 @@
 
   <ion-item lines="full">
     <ion-label>
-      <h2><b>{{vehicleDetails?.vehicleName | titlecase}} - {{vehicleDetails?.vehicleRegYear }}</b></h2>
-      <h3>{{vehicleDetails?.vehicleModel | titlecase}} - {{vehicleDetails?.transmission | titlecase}}</h3>
+      <h2><b>{{productDetails?.productName | titlecase}} - {{productDetails?.productRegYear }}</b></h2>
+      <h3>{{productDetails?.productModel | titlecase}} - {{productDetails?.transmission | titlecase}}</h3>
       <ion-row>
         <ion-col size="6" class="ion-no-padding">
           <ion-badge color="dark" style="padding: 5px 10px; margin: 3px 0;">
-            <ion-text color="light">{{vehicleDetails?.vehicleCompany | titlecase }}</ion-text>
+            <ion-text color="light">{{productDetails?.productCompany | titlecase }}</ion-text>
           </ion-badge>
         </ion-col>
         <ion-col size="6" class="ion-text-right ion-no-padding">
           <p class="ion-no-margin appTxt mt1">
             <b style="color: gray;font-size: 16px;">Price : </b>
-            <ion-text style="font-size: 16px;" color="primary"> <b>${{vehicleDetails?.carPrice}}</b></ion-text>
+            <ion-text style="font-size: 16px;" color="primary"> <b>${{productDetails?.carPrice}}</b></ion-text>
           </p>
         </ion-col>
       </ion-row>
@@ -50,7 +50,7 @@
   <ion-item lines="full" class="ion-no-padding">
     <ion-icon class="ion-padding-start" slot="start" size="large" name="location-outline"></ion-icon>
     <ion-label class="ion-margin-start">
-      <p class=" ion-no-margin">{{vehicleDetails?.location}}</p>
+      <p class=" ion-no-margin">{{productDetails?.location}}</p>
     </ion-label>
   </ion-item>
   <div class="ion-padding-horizontal">
@@ -63,15 +63,15 @@
     <ion-row class="ion-text-center">
       <ion-col size="4">
         <img width="30%" src="../../../assets/icon/machine.png" alt="">
-        <h6>{{vehicleDetails?.vehicleRegYear}}</h6>
+        <h6>{{productDetails?.productRegYear}}</h6>
       </ion-col>
       <ion-col size="4">
         <img width="30%" src="../../../assets/icon/speed.png" alt="">
-        <h6>{{vehicleDetails?.mileage}} km</h6>
+        <h6>{{productDetails?.mileage}} km</h6>
       </ion-col>
       <ion-col size="4">
         <img width="30%" src="../../../assets/icon/fuel.png" alt="">
-        <h6>{{vehicleDetails?.carburant | titlecase}}</h6>
+        <h6>{{productDetails?.carburant | titlecase}}</h6>
       </ion-col>
     </ion-row>
   </ion-item>
@@ -80,16 +80,16 @@
     <ion-text color="medium"><b>Description</b></ion-text>
   </p>
   <ion-item class="ion-no-padding">
-    <p class="fs ion-no-margin ion-padding-bottom ion-padding-start">{{vehicleDetails?.vehicleDescription}}</p>
+    <p class="fs ion-no-margin ion-padding-bottom ion-padding-start">{{productDetails?.productDescription}}</p>
   </ion-item>
 
-  <p *ngIf="!isMyVehicle" class="fs ion-padding-horizontal">
+  <p *ngIf="!isMyproduct" class="fs ion-padding-horizontal">
     <ion-text color="medium"><b>Hosted by</b></ion-text>
   </p>
 
-  <ion-item *ngIf="!isMyVehicle" lines="none" class="ion-no-padding">
+  <ion-item *ngIf="!isMyproduct" lines="none" class="ion-no-padding">
     <ion-avatar routerLink="/host-list" class="ms-1" style="width: 60px; height : 60px;">
-      <img [src]="vehicleHost?.profileUrl || dataHelper.userAvatar" alt="">
+      <img [src]="productHost?.profileUrl || dataHelper.userAvatar" alt="">
     </ion-avatar>
     <ion-buttons slot="end">
       <ion-button (click)="openChat()" shape="round" color="primary">
@@ -97,15 +97,15 @@
       </ion-button>
     </ion-buttons>
     <ion-label routerLink="/host-list">
-      <h2 class="ms-1"><b>{{vehicleHost?.fullName | titlecase}}</b></h2>
+      <h2 class="ms-1"><b>{{productHost?.fullName | titlecase}}</b></h2>
       <ion-row>
-        <h3 class="ms-1">Joined {{vehicleHost?.createdOn | date:'mediumDate'}}</h3>
+        <h3 class="ms-1">Joined {{productHost?.createdOn | date:'mediumDate'}}</h3>
       </ion-row>
     </ion-label>
   </ion-item>
 
   <div class="ion-padding">
-    <ion-button *ngIf="isMyVehicle" (click)="deleteCar()" expand="block" color="danger">Delete
+    <ion-button *ngIf="isMyproduct" (click)="deleteCar()" expand="block" color="danger">Delete
       Car</ion-button>
   </div>
 

@@ -16,7 +16,7 @@
         <p>Browse your phone to choose file</p>
         <ion-button (click)="openCameraOptions('carDocument')" class="ion-margin-top" color="dark">
           Upload Car Document
-          <ion-icon *ngIf="dataHelper.vehicleDetails.carDocument" name="checkmark-circle" slot="end" color="light">
+          <ion-icon *ngIf="dataHelper.productDetails.carDocument" name="checkmark-circle" slot="end" color="light">
           </ion-icon>
         </ion-button>
       </div>
@@ -24,16 +24,16 @@
   </ion-card>
 
   <div class="bgLight ion-margin-vertical ion-padding rounded">
-    <div class="ion-text-center" *ngIf="!dataHelper.vehicleDetails.coverImageUrl">
+    <div class="ion-text-center" *ngIf="!dataHelper.productDetails.coverImageUrl">
       <img class="mainImgIcon" (click)="openCameraOptions('coverImage')" [src]="'../../../assets/icon/camera.png'">
     </div>
-    <div class="ion-text-center" *ngIf="dataHelper.vehicleDetails.coverImageUrl">
-      <img class="mainImg" (click)="openCameraOptions('coverImage')" [src]="dataHelper.vehicleDetails.coverImageUrl">
+    <div class="ion-text-center" *ngIf="dataHelper.productDetails.coverImageUrl">
+      <img class="mainImg" (click)="openCameraOptions('coverImage')" [src]="dataHelper.productDetails.coverImageUrl">
     </div>
   </div>
 
-  <ion-row *ngIf="dataHelper.vehicleDetails.coverImageUrl" class="mt-1">
-    <ion-col *ngFor="let img of dataHelper.vehicleDetails.imageUrls; index as i" size="4" class="pl-0">
+  <ion-row *ngIf="dataHelper.productDetails.coverImageUrl" class="mt-1">
+    <ion-col *ngFor="let img of dataHelper.productDetails.imageUrls; index as i" size="4" class="pl-0">
       <div class="imgCont" style="height: 90px; position: relative;">
         <img class="additionalImages" [src]="img">
         <ion-icon (click)="removeImg(i)" name="close-circle" color="danger" class="removeIcon"></ion-icon>
@@ -47,7 +47,7 @@
   </ion-row>
 
   <ion-button (click)="saveDocuments()" color="primary" expand="block">
-    Submit Vehicle Information
+    Submit product Information
   </ion-button>
 </ion-content>
 
@@ -57,7 +57,7 @@
       <ion-text color="dark">Congratulations!</ion-text>
     </h4>
     <p class="ion-text-center">
-      <ion-text color="dark">Your vehicle details have been successfully saved!</ion-text>
+      <ion-text color="dark">Your product details have been successfully saved!</ion-text>
     </p>
     <div class="ion-text-center ion-margin">
       <ion-button shape="round" (click)="dataHelper.showInfoSavedPopup = false" routerLink="/tabs/tab1"

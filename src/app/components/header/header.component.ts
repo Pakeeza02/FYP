@@ -22,6 +22,10 @@ export class HeaderComponent implements OnInit {
     this.route.navigate(['/all-products'])
   }
 
+  login() {
+    this.route.navigate(['/login'])
+  }
+
   wishlist() {
     this.route.navigate(['/wishlist'])
   }

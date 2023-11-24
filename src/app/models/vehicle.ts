@@ -1,26 +1,26 @@
-export class iVehicle {
+export class iProduct {
     hostUid: string;
-    vehicleName: string;
-    vehicleDescription: string;
-    vehicleCharactristics: string;
+    productName: string;
+    productDescription: string;
+    productCharactristics: string;
     carDocument: string;
-    vehicleModel: string;
-    vehicleCompany: string;
-    vehicleRegYear: number;
+    productModel: string;
+    productCompany: string;
+    productRegYear: number;
     registrationNumber: string;
     carburant: string;
     mileage: number;
     transmission: string;
     location: string;
     createdOn: number;
-    status: iVehicleStatus;
+    status: iProductStatus;
     imageUrls: string[] = [];
     coverImageUrl: string;
-    vehicleId: string;
+    productId: string;
     carPrice: number;
 }
 
-export enum iVehicleStatus {
+export enum iProductStatus {
     PENDING = 'Pending',
     APPROVED = 'Approved',
     REJECTED = 'Rejected',

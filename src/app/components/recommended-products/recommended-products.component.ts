@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-recommended-products',
@@ -76,8 +77,12 @@ export class RecommendedProductsComponent implements OnInit {
   ]
 
 
-  constructor() { }
+  constructor(private navCtrl:NavController) { }
 
   ngOnInit() { }
+
+  allProduct(){
+    this.navCtrl.navigateForward(['/all-products'])
+  }
 
 }

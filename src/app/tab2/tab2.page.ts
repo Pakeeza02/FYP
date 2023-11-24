@@ -53,23 +53,23 @@ export class Tab2Page {
       return true;
     }
     const receiverName = this.getReceiverName(chat).toLowerCase();
-    const vehicleName = this.getVehicleTitle(chat).toLowerCase();
+    const productName = this.getproductTitle(chat).toLowerCase();
     return receiverName.indexOf(this.searchQuery.toLowerCase()) !== -1
-      || vehicleName.indexOf(this.searchQuery.toLowerCase()) !== -1;
+      || productName.indexOf(this.searchQuery.toLowerCase()) !== -1;
   }
 
-  // Get the image URL of a vehicle based on its vehicleId
-  getVehicleImage(vehicleId: string): string {
-    return this.dataHelper.allVehicles
-      .find(x => x.vehicleId === vehicleId)?.coverImageUrl
+  // Get the image URL of a product based on its productId
+  getproductImage(productId: string): string {
+    return this.dataHelper.allproducts
+      .find(x => x.productId === productId)?.coverImageUrl
       ?? this.dataHelper.userAvatar;
   }
 
-  // Get the title of a vehicle in a chat based on the vehicleId
-  getVehicleTitle(chat: iChatNode): string {
-    return this.dataHelper.allVehicles
-      .find(x => x.vehicleId === chat.vehicleId)?.vehicleName
-      ?? 'Vehicle Not Available';
+  // Get the title of a product in a chat based on the productId
+  getproductTitle(chat: iChatNode): string {
+    return this.dataHelper.allproducts
+      .find(x => x.productId === chat.productId)?.productName
+      ?? 'product Not Available';
   }
 
   // Navigate to the chat screen when a chat is selected
