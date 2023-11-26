@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { iUser } from 'src/app/models/user';
 import { DataHelperService } from 'src/app/services/data-helper.service';
 import { UserAuthService } from 'src/app/services/user-auth.service';
@@ -11,56 +12,53 @@ import { UtilsProviderService } from 'src/app/services/utils-provider.service';
   styleUrls: ['./change-password.page.scss'],
 })
 export class ChangePasswordPage implements OnInit {
-
-  showCurrentPassword: boolean;
-  showNewPassword: boolean;
-  showConfrimPassword: boolean;
-  currentPassword: string;
-  newPassword: string;
-  confirmNewPassword: string;
+  currentPassword = '';
+  newPassword = '';
+  confirmNewPassword = '';
 
   constructor(
+    public router: Router,
     public utils: UtilsProviderService,
+    public toastr: ToastrService,
     public userAuth: UserAuthService,
-    public navCtrl: NavController,
-    public dataHelper: DataHelperService,
-  ) {
+    public dataHelper: DataHelperService
+  ) { }
+
+  ngOnInit(): void {
+    if (localStorage.getItem('userLoggedIn') !== 'true') {
+      this.router.navigate(['/login']);
+    }
   }
 
-  ngOnInit() {
-  }
-
-
-  // Update the user's password
   updatePassword() {
-    // Check if the new passwords match, then attempt to update the password
     if (this.newPassword !== this.confirmNewPassword) {
-      this.utils.createToast('New passwords do not match!');
+      this.toastr.error("Password mismatch!");
       return;
     }
+
     const self = this;
+    self.dataHelper.displayLoading = true;
     const user: iUser = this.userAuth.currentUser;
-    self.utils.presentLoading();
-    self.userAuth.loginUser(user.email, self.currentPassword)
+    const data = {
+      email: user.email,
+      password: self.currentPassword
+    };
+
+    self.userAuth.loginUser(data)
       .then((firebaseUser) => {
         if (firebaseUser) {
-          self.userAuth.updatePassword(self.newPassword).then(() => {
-            self.utils.stopLoading();
-            self.utils.createToast('Password updated successfully!');
+          self.userAuth.updatePassword(self.newPassword)?.then(() => {
+            self.dataHelper.displayLoading = false;
+            self.toastr.success("Password updated successfully!");
             self.userAuth.logoutUser();
           })
-            .catch((e) => {
-              self.utils.stopLoading();
-              self.utils.createToast(e.message);
+            .catch((e: any) => {
+              self.toastr.error(e.message);
             });
-        } else {
-          self.utils.stopLoading();
-          self.navCtrl.back();
         }
       })
       .catch((e) => {
-        self.utils.stopLoading();
-        self.utils.createToast('Your current password is incorrect!');
+        self.toastr.error(e.message);
       });
   }
 

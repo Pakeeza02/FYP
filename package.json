@@ -25,6 +25,7 @@
     "@awesome-cordova-plugins/camera": "^6.4.0",
     "@ionic/angular": "^7.5.5",
     "@ionic/cordova-builders": "^10.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^15.1.0",
     "angular": "^1.8.3",
     "firebase": "^8.1.2",
     "force": "^0.0.3",

@@ -6,6 +6,7 @@ import { DataHelperService } from './data-helper.service';
 import { Subject } from 'rxjs';
 import firebase from 'firebase';
 import { UtilsProviderService } from './utils-provider.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class UserAuthService {
 
   currentUser: iUser = new iUser();
   fooSubject = new Subject<any>();
-  isLogin:any;
+  isLogin: any;
 
   currentUserLocation = {
     userLat: null,
@@ -27,6 +28,7 @@ export class UserAuthService {
     public navCtrl: NavController,
     public dataHelper: DataHelperService,
     public utils: UtilsProviderService,
+    public toastr: ToastrService
   ) {
     if (localStorage.getItem('userLoggedIn')) {
       this.getCurrentUser();
@@ -79,8 +81,14 @@ export class UserAuthService {
   }
 
   // Log in a user with email and password
-  loginUser(email: string, password: string): Promise<any> {
-    return firebase.auth().signInWithEmailAndPassword(email, password);
+  async loginUser(formData: any): Promise<any> {
+    try {
+      const user = await firebase.auth().signInWithEmailAndPassword(formData.email, formData.password);
+      return user;
+    } catch (e: any) {
+      this.dataHelper.displayLoading = false;
+      this.toastr.error(e.message);
+    }
   }
 
   // Update the user's password

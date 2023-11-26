@@ -25,13 +25,16 @@
                   <a style="cursor: pointer !important;" class="nav-link active text-dark" (click)="cart()">Cart</a>
                 </li>
                 <li class="nav-item ms-3">
-                  <button routerLink="/contact-us" class="btn btn-success mb-1">Contact</button>
+                  <button *ngIf="userAuth.currentUser.userType !=='buyer'" (click)="addCategory()"
+                    class="btn btn-success mb-1">Add Category</button>
                 </li>
                 <li class="nav-item ms-1">
-                  <button *ngIf="userAuth.isLogin" (click)="userAuth.logoutUser()" class="btn  btn-primary">Login</button>
+                  <button *ngIf="userAuth.isLogin" (click)="userAuth.logoutUser()"
+                    class="btn  btn-primary">Login</button>
                 </li>
                 <li class="nav-item ms-1">
-                  <button *ngIf="!userAuth.isLogin" (click)="userAuth.logoutUser()" class="btn  btn-danger">logout</button>
+                  <button *ngIf="!userAuth.isLogin" (click)="userAuth.logoutUser()"
+                    class="btn  btn-danger">logout</button>
                 </li>
               </ul>
             </div>

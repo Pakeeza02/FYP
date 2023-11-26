@@ -16,6 +16,7 @@ export class DataHelperService {
   productDetails: iProduct = new iProduct();
   myChats: iChatNode[] = [];
   selectedChat: iChatNode;
+  displayLoading:boolean;
   allproducts: iProduct[] = [];
   showInfoSavedPopup: boolean;
   registrationYear: number[] = [];

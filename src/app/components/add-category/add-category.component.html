@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add Category</h4>
+  <button type="button" class="btn-close" (click)="activeModal.close()" aria-label="Close"></button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="categoryForm">
+    <div class="form-group">
+      <label>Brand Title</label>
+      <input formControlName="categoryTitle" type="text" placeholder="Brand Title" class="form-control ">
+      <p class="errorMsg" *ngIf="categoryForm.get('categoryTitle')?.hasError('required') && 
+          (categoryForm.get('categoryTitle')?.dirty || categoryForm.get('categoryTitle')?.touched)">
+        *this field is required
+      </p>
+    </div>
+
+    <div class="input form-group">
+      <p>{{categoryForm ? categoryFile?.name : 'No file selected!'}}</p>
+      <button (click)="filePicker.click()" class="btn btn-sm btn-dark">Choose Image</button>
+      <input (change)="onChangeFile($event)" hidden #filePicker type="file" class="form-control">
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-dark btn-sm rounded-30" (click)="activeModal.close()">Cancel</button>
+  <button class="btn btn-primary rounded-30 btn-sm text-white" (click)="submitFormData(categoryForm.value)"
+    [disabled]="!categoryForm.valid">Save Category</button>
+</div>

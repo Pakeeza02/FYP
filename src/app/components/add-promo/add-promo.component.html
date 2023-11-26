@@ -1,0 +1,72 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add Promo</h4>
+  <button type="button" class="btn-close" (click)="activeModal.close()" aria-label="Close"></button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="promoForm">
+    <div class="form-group">
+      <label>Promo Title</label>
+      <input formControlName="promoTitle" type="text" placeholder="Promo Title" class="form-control mt-2">
+      <p class="errorMsg" *ngIf="promoForm.get('promoTitle')?.hasError('required') && 
+          (promoForm.get('promoTitle')?.dirty || promoForm.get('promoTitle')?.touched)">
+        *this field is required
+      </p>
+    </div>
+
+    <div class="form-group mt-2">
+      <div class="row">
+        <div class="col-sm-6">
+          <label class="mt-1">Value</label>
+          <input formControlName="value" type="number" placeholder="Value" class="form-control mt-2">
+          <p class="errorMsg" *ngIf="promoForm.get('value')?.hasError('required') && 
+          (promoForm.get('value')?.dirty || promoForm.get('value')?.touched)">
+            *this field is required
+          </p>
+        </div>
+
+        <div class="col-sm-6">
+          <label class="mt-1">Discount Type</label>
+          <select formControlName="discountType" class="form-select mt-2">
+            <option value="Straight">Straight</option>
+            <option value="Percentage">Percentage</option>
+          </select>
+          <p class="errorMsg" *ngIf="promoForm.get('discountType')?.hasError('required') && 
+          (promoForm.get('discountType')?.dirty || promoForm.get('discountType')?.touched)">
+            *this field is required
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="mt-1">Price</label>
+      <input formControlName="price" type="number" placeholder="Price" class="form-control mt-2">
+      <p class="errorMsg" *ngIf="promoForm.get('price')?.hasError('required') && 
+  (promoForm.get('price')?.dirty || promoForm.get('price')?.touched)">
+        *this field is required
+      </p>
+    </div>
+
+    <div class="form-floating form-group mt-3">
+      <textarea formControlName="promoDescription" class="form-control" placeholder="Description here..."
+        id="floatingTextarea2" style="height: 100px"></textarea>
+      <label for="floatingTextarea2">Description</label>
+      <p class="errorMsg" *ngIf="promoForm.get('promoDescription')?.hasError('required') && 
+          (promoForm.get('promoDescription')?.dirty || promoForm.get('promoDescription')?.touched)">
+        *this field is required
+      </p>
+    </div>
+    <div class="input mt-3 form-group">
+      <p>{{promoForm ? promoFile?.name : 'No file selected!'}}</p>
+      <button (click)="filePicker.click()" class="btn btn-sm btn-outline-pink">Choose Image</button>
+      <input (change)="onChangeFile($event)" hidden #filePicker type="file" class="form-control">
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-dark btn-sm rounded-30" (click)="activeModal.close()">Cancel</button>
+  <button class="btn btn-pink rounded-30 btn-sm text-white" (click)="submitFormData(promoForm.value)"
+    [disabled]="!promoForm.valid">Save Promo</button>
+</div>

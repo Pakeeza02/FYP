@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, NavController } from '@ionic/angular';
 import { DataHelperService } from 'src/app/services/data-helper.service';
 import { UserAuthService } from 'src/app/services/user-auth.service';
-import { UtilsProviderService } from 'src/app/services/utils-provider.service';
+import { ToastrService } from 'ngx-toastr';
 import firebase from 'firebase';
+import { HttpHelperService } from 'src/app/services/http-helper.service';
+import { iUser } from 'src/app/models/user';
 
 @Component({
   selector: 'app-signup',
@@ -14,25 +15,28 @@ import firebase from 'firebase';
 })
 export class SignupPage implements OnInit {
 
-  showPassword: boolean;
-  showConfPassword: boolean;
-
-  onRegisterForm: FormGroup;
+  selectedUserType: string = '';
+  onRegisterForm: any = FormGroup;
+  user: iUser = new iUser();
   loginProcessing: boolean;
 
   constructor(
-    public alertController: AlertController,
-    public formBuilder: FormBuilder,
-    public router: Router,
-    public utils: UtilsProviderService,
-    public navCtrl: NavController,
+    private fb: FormBuilder,
+    private router: Router,
     public dataHelper: DataHelperService,
+    public httpHelper: HttpHelperService,
     public userAuth: UserAuthService,
-  ) { }
+    private toastr: ToastrService
+  ) {
+    console.log('Component constructor called');
+    if (localStorage.getItem('userLoggedIn') === 'true') {
+      this.router.navigate(['/home']);
+    }
+  }
 
-  ngOnInit() {
-    // Initialize the registration form with fields for full name, email, password, and password confirmation, along with validation rules
-    this.onRegisterForm = this.formBuilder.group({
+  ngOnInit(): void {
+    console.log('ngOnInit called');
+    this.onRegisterForm = this.fb.group({
       fullName: ['', Validators.compose([
         Validators.required
       ])],
@@ -49,45 +53,50 @@ export class SignupPage implements OnInit {
     });
   }
 
-  // Create a new user account using the provided data
-  createAccount(data) {
+  createAccount(data: any) {
     const self = this;
+
     if (data.password !== data.cPassword) {
-      // Display a toast message if the passwords do not match
-      self.utils.createToast('New passwords do not match!');
+      self.toastr.error("Password mismatch!");
     } else {
       self.loginProcessing = true;
-      // Sign up the user with the provided email and password
       self.userAuth.signupUser(data.email, data.password)
         .then((user) => {
           if (user) {
-            // If the user is successfully signed up, add user data to the user table
-            data.uid = firebase.auth().currentUser.uid;
-            self.saveDatatoUserTableAfterRegister(data);
+            const currentUser = firebase.auth().currentUser;
+            if (currentUser) {
+              data.uid = currentUser.uid;
+              self.saveDatatoUserTableAfterRegister(data);
+              this.toastr.success("Account authenticated successfully!")
+            } else {
+              self.toastr.error('User not authenticated.');
+            }
           }
         })
         .catch((error) => {
-          // An error occurred during user registration
           self.loginProcessing = false;
-          self.utils.createToast(error.message);
+          self.toastr.error(error.message);
         });
     }
   }
 
-  // Save user data to the Firebase user table after registration
-  saveDatatoUserTableAfterRegister(data) {
+  selectUserType(userType: string) {
+    this.selectedUserType = userType;
+  }
+
+  saveDatatoUserTableAfterRegister(data: any) {
     const self = this;
     data.password = null;
     data.cPassword = null;
+    data.isVerified = true;
     data.createdOn = Number(new Date());
-    const updates = {};
-    updates['/users/' + data.uid] = data;
-    firebase.database().ref().update(updates).then(() => {
-      self.loginProcessing = false;
-      self.userAuth.setUser(data);
-      self.dataHelper.publishSomeData({ newLoggedIn: true });
-      self.navCtrl.navigateRoot(['/user-role']);
-    });
+    data.userType = this.selectedUserType;
+    const urlPath = `users/${data.uid}`;
+    self.dataHelper.updateDataOnFirebase(urlPath, data)
+      .then(() => {
+        self.loginProcessing = false;
+        self.userAuth.setUser(data);
+        this.router.navigate(['home']);
+      });
   }
-
 }

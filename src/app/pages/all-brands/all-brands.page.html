@@ -9,7 +9,7 @@
             <img height="100px" src="../../../assets/images/brand-image.png" alt="">
           </div>
           <h1 class="bold text-center mb-3 text-dark" style="font-size: 30px;">Available Brands</h1>
-              </div>
+        </div>
       </div>
     </div>
   </div>
@@ -21,3 +21,11 @@
   <app-footer></app-footer>
 
 </ion-content>
+
+<div *ngIf="userAuth.currentUser.userType !=='buyer'" class="me-3">
+  <ion-fab (click)="addBrand()" vertical="bottom" horizontal="end">
+    <ion-fab-button color="primary">
+      <ion-icon color="light" name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</div>
