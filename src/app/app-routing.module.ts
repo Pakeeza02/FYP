@@ -43,22 +43,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/user-role/user-role.module').then(m => m.UserRolePageModule)
   },
   {
-    path: 'add-car',
-    loadChildren: () => import('./pages/add-car/add-car.module').then(m => m.AddCarPageModule)
-  },
-  {
-    path: 'car-detail',
-    loadChildren: () => import('./pages/car-detail/car-detail.module').then(m => m.CarDetailPageModule)
-  },
-  {
-    path: 'filter-car',
-    loadChildren: () => import('./pages/filter-car/filter-car.module').then(m => m.FilterCarPageModule)
-  },
-  {
-    path: 'upload-car',
-    loadChildren: () => import('./pages/upload-car/upload-car.module').then(m => m.UploadCarPageModule)
-  },
-  {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   },
@@ -77,7 +61,8 @@ const routes: Routes = [
   {
     path: 'all-products',
     loadChildren: () => import('./pages/all-products/all-products.module').then( m => m.AllProductsPageModule)
-  },  {
+  },
+  {
     path: 'all-brands',
     loadChildren: () => import('./pages/all-brands/all-brands.module').then( m => m.AllBrandsPageModule)
   },

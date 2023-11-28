@@ -1,3 +1,97 @@
-<p>
-  add-product works!
-</p>
+<div class="container">
+  <div class="modal-header text-center">
+    <h4 class="modal-title">Add Product</h4>
+    <button type="button" class="btn-close" (click)="activeModal.close()" aria-label="Close"></button>
+  </div>
+  <form [formGroup]="productForm">
+    <div class="row mt-1">
+      <div class="col-lg-6">
+        <div class="card shadow" style="border-radius: 10px !important;border: 1px solid #ffffff;">
+          <div class="card-body">
+            <h4 class="text-center  fw-semibold">Product Information</h4>
+            <div class="text-center">
+            </div>
+            <div class="form-group mb-1">
+              <label class="mb-1">Product Category</label>
+              <select formControlName="productCategory" class=" form-select">
+                <option value="Cosmetics">Cosmetics</option>
+                <option value="Cloths">Cloths</option>
+                <option value="Accessories">Accessories</option>
+              </select>
+              <p class="errorMsg" *ngIf="productForm.get('productCategory')?.hasError('required') && 
+          (productForm.get('productCategory')?.dirty || productForm.get('productCategory')?.touched)">
+                *this field is required!
+              </p>
+            </div>
+            <div class="form-group mb-1">
+              <label class="mb-1">Product Title</label>
+              <input formControlName="productName" type="text" placeholder="Product Title" class="form-control ">
+              <p class="errorMsg" *ngIf="productForm.get('productName')?.hasError('required') && 
+          (productForm.get('productName')?.dirty || productForm.get('productName')?.touched)">
+                *this field is required!
+              </p>
+            </div>
+            <div class="form-group mb-1">
+              <label class="mb-1">product Description</label>
+              <textarea formControlName="productDescription" placeholder="product Description" rows="3"
+                class="form-control "></textarea>
+              <p class="errorMsg" *ngIf="productForm.get('productDescription')?.hasError('required') && 
+          (productForm.get('productDescription')?.dirty || productForm.get('productDescription')?.touched)">
+                *this field is required!
+              </p>
+            </div>
+            <div class="form-group mb-1">
+              <label class="mb-1">Price</label>
+              <input formControlName="price" type="text" placeholder="Price" class="form-control ">
+              <p class="errorMsg" *ngIf="productForm.get('price')?.hasError('required') && 
+          (productForm.get('price')?.dirty || productForm.get('price')?.touched)">
+                *this field is required!
+              </p>
+            </div>
+
+            <div class="form-group mb-1 ">
+              <label class="mb-1">Product MKU</label>
+              <input formControlName="mku" type="text" placeholder="MKU Number" class="form-control ">
+              <p class="errorMsg" *ngIf="productForm.get('mku')?.hasError('required') && 
+          (productForm.get('mku')?.dirty || productForm.get('mku')?.touched)">
+                *this field is required!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+
+        <div class="card shadow" style="border-radius: 10px !important;border: 1px solid #ffffff;">
+          <div class=" card-body">
+            <h4 class="text-center  fw-semibold">More Informations</h4>
+            <div class="form-group mb-1">
+              <label class="mb-1">Discount Type</label>
+              <select formControlName="productCharactristics" class=" form-select">
+                <option value="Free">Free Shipping</option>
+                <option value="OFF">25% OFF</option>
+              </select>
+              <p class="errorMsg" *ngIf="productForm.get('productCharactristics')?.hasError('required') && 
+          (productForm.get('productCharactristics')?.dirty || productForm.get('productCharactristics')?.touched)">
+                *this field is required!
+              </p>
+            </div>
+            <div class=" form-group">
+              <p>{{productFile ? productFile.name : 'No file selected!'}}</p>
+              <button (click)="filePicker.click()" class="btn btn-sm btn-primary">Choose product
+                Images</button>
+              <input (change)="onChangeFile($event)" hidden #filePicker type="file" class="form-control btn">
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mb-2">
+      <button style="width: 30%;" (click)="submitFormData(productForm.value)"
+        class="btn btn-success text-light mt-5 text-center" [disabled]="!productForm.valid">Save
+        Product</button>
+    </div>
+  </form>
+</div>

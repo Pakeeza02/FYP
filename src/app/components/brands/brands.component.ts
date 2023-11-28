@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { DataHelperService } from 'src/app/services/data-helper.service';
 
 @Component({
   selector: 'app-brands',
@@ -14,11 +15,11 @@ export class BrandsComponent implements OnInit {
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATcAAACiCAMAAAATIHpEAAAAflBMVEX/aQD/////ZgD+YwD/XAD+YAD/zbX/rIb//vv/hkP/iEz/gjv/XgD/l2L/rYX/5Nf/8Ov/iVH/bgD+jVf/mWf/nW3+sI3/7eP+wqf/0bz/6uH/7+r/2sf/v6T/qYH/uZr+dB3+1MH+kVz+VgD/3Mr/+PP/x7D/fTD+onb/gkZMUdm3AAACn0lEQVR4nO3bW3OiMBiAYfiSrC5kVbALtQdb0db2///BJUZQwAPMdEZ35n1u6OmCeSchAUsQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMBPkpJy3Be3Ppn/ghirdRrPi4e/zkMxj1OtraHeJUrH2SoP2/JVFmt165O7W0qyWadZZZYJ5U4ROxqfreaMR5bZ2iHB9GI1ZxoQrkXS81P0aLKmhGtS3dXgZDiucQ160StbGC70rU/1nkjSM1sYJszUA319TahMGXA1iXtnC8OYAVcxjwO6PZpbn+7dsP0WUy9notYGZAvDW5/s3ZBiULeCC5ynJlWS5VrXrEmj5Wb347HVev2r+qMJe1/vsCyMmklE6WjXrRxhpu7GwrBnFo1uUnG/s8tOtwXdPLs57pY+/Nkp4t1DXjNud9vYW5/wnTjcLZTd5He9AHxE4qM2u03p5tmn093CvJyR5rPd7Ylunn5ud/vI8/yjPKZlr7d2t2c2vl63W7zWa3fPupVAZe1uM7p5dtbuVl7YxO1Aynt4Nep0Y556emA3xps3sBvXt73u9e2424RuZ+jOPuRiN/Yhe91978Vu7Hv37Mugbi908xr39de7cV+/Z16rJBMjyu13o/Lo+m2VmGXZTYnYutsr3Ty1rJNESfRVHr8Ox28XNUmS73oyL3lu6e2mZH8Rz8n3ZFA3slUOG7ge+MC+5p4V9fbGslCR9wHd3pmntcPO9yp2vUdk27vbluF2xPa9wr0x3Br05nqz0obFtMX0CbdhLe2wn1ezfZLtBD2/vP19mjNJTxJdrM69MjNeFZqV9ByxKskW0+YrILPpIksU7xhdJsporVWQvjtpoMrvjCJaX0f/ywUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+kfMNUfGnlt/HoAAAAASUVORK5CYII="
   ];
 
-  constructor(private navCtrl:NavController) { }
+  constructor(private navCtrl: NavController, public dataHelper: DataHelperService) { }
 
   ngOnInit() { }
 
-  allBrands(){
+  allBrands() {
     this.navCtrl.navigateForward(['/all-brands'])
   }
 

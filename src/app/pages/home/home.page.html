@@ -1,11 +1,6 @@
 <app-header></app-header>
 
 <ion-content class="ion-padding">
-
-    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
-
     <div class="scrollHorizontal" style="margin-top: 120px !important;">
         <ion-card *ngFor="let img of slideImages;index as i" class="ion-no-margin reviewCard1">
             <ion-card-content class="ion-no-padding">

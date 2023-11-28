@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
-import { iFilter } from 'src/app/models/filter';
-import { iProduct } from 'src/app/models/vehicle';
-import { FilterCarPage } from 'src/app/pages/filter-car/filter-car.page';
+import { iProduct } from 'src/app/models/product';
+
 import { DataHelperService } from 'src/app/services/data-helper.service';
 import { UserAuthService } from 'src/app/services/user-auth.service';
 
@@ -194,7 +193,7 @@ export class ProductListingComponent implements OnInit {
     },
   ]
 
-  allProduct(){
+  allProduct() {
     this.navCtrl.navigateForward(['/all-products'])
   }
 
@@ -207,60 +206,26 @@ export class ProductListingComponent implements OnInit {
     // Subscribe to data changes to refresh the view when products are fetched
     this.dataHelper.getObservable().subscribe(data => {
       if (data.productsFetched) {
-        this.getMyproducts();
       }
     });
-  }
-
-  // This method is called when the view will enter
-  ionViewWillEnter() {
-    this.getMyproducts();
-  }
-
-  // Get the user's products based on applied filters
-  getMyproducts() {
-    this.myproducts = this.dataHelper.filterproducts();
-    if (this.dataHelper.userType === 'seller') {
-      this.myproducts = this.myproducts.filter(x => x.hostUid === this.userAuth.currentUser.uid);
-    }
   }
 
   // Handle the "pull to refresh" event
   doRefresh(event: any) {
     this.myproducts = [];
     setTimeout(() => {
-      this.getMyproducts();
       event.target.complete();
     }, 500);
   }
 
-  productDetail() {
-    this.navCtrl.navigateForward(['/product-details']);
-  }
+  // productDetail() {
+  //   this.navCtrl.navigateForward(['/product-details']);
+  // }
 
   // Navigate to the car details page
-  carDetails(car: iProduct) {
-    this.dataHelper.productDetails = this.dataHelper.deepCloneData(car);
-    this.navCtrl.navigateForward(['/car-detail']);
-  }
-
-  // Open the filter car modal
-  async openFilters() {
-    const modal = await this.modalCtrl.create({
-      component: FilterCarPage,
-      componentProps: {
-        filters: this.dataHelper.appliedFilters || new iFilter()
-      }
-    });
-    await modal.present();
-    const data = (await modal.onWillDismiss()).data;
-    if (data && data.filters) {
-      this.dataHelper.appliedFilters = data.filters;
-      this.getMyproducts();
-    } else if (data.resetFilters) {
-      this.dataHelper.appliedFilters = new iFilter();
-      this.getMyproducts();
-    }
+  productDetail(product: iProduct) {
+    this.dataHelper.productDetails = this.dataHelper.deepCloneData(product);
+    this.navCtrl.navigateForward(['/product-details']);
   }
 
   ngOnInit(): void {

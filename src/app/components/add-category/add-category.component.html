@@ -6,8 +6,8 @@
 <div class="modal-body">
   <form [formGroup]="categoryForm">
     <div class="form-group">
-      <label>Brand Title</label>
-      <input formControlName="categoryTitle" type="text" placeholder="Brand Title" class="form-control ">
+      <label>Category Title</label>
+      <input formControlName="categoryTitle" type="text" placeholder="Category Title" class="form-control ">
       <p class="errorMsg" *ngIf="categoryForm.get('categoryTitle')?.hasError('required') && 
           (categoryForm.get('categoryTitle')?.dirty || categoryForm.get('categoryTitle')?.touched)">
         *this field is required

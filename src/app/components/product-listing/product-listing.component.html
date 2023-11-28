@@ -8,45 +8,48 @@
     </div>
   </div>
 </div>
-
 <hr>
-
-<div class="container-fluid" *ngIf="myproducts.length">
-  <div class="scrollHorizontal mb-1">
-    <ion-card *ngFor="let car of myproducts" class="ion-no-margin reviewCard">
-      <ion-card-content class="ion-no-padding">
-        <swiper-container pagination="true">
-          <swiper-slide>
-            <img src={{car?.coverImageUrl}}>
-          </swiper-slide>
-          <swiper-slide *ngFor="let img of car?.imageUrls; index as i">
-            <img src={{img}}>
-          </swiper-slide>
-        </swiper-container>
-        <div style="padding-left: 10px !important;padding-bottom: 6px">
-
-          <ion-item style="--background: transparent !important;" lines="none" class="ion-no-padding">
-            <ion-label>
-              <h3 class="ion-no-margin pName bold">
-                <ion-text color="dark">{{car?.productName | titlecase}}</ion-text>
-              </h3>
-              <p>
-                <ion-text color="medium">{{car?.location}}</ion-text>
-              </p>
-              <p class="bold priceTxt">${{car?.carPrice}}</p>
-
-            </ion-label>
-          </ion-item>
-        </div>
-      </ion-card-content>
-    </ion-card>
-  </div>
-</div>
-
 <div>
+  <div *ngIf="dataHelper.allProducts">
+    <ion-row>
+      <ion-col *ngFor="let product of dataHelper.allProducts" size="3">
+        <ion-card (click)="productDetail(product)" class="ion-no-margin shadow mb-1">
+          <ion-card-content class="ion-no-padding">
+            <swiper-container pagination="true">
+              <swiper-slide>
+                <img [src]='product.coverImageUrl'>
+              </swiper-slide>
+              <!-- <swiper-slide *ngFor="let img of product.imgUrls">
+                <img [src]='img'>
+              </swiper-slide> -->
+            </swiper-container>
+            <ion-badge class="badge" color="dark">{{product?.discountType}}</ion-badge>
+            <div style="padding-left: 10px !important;padding-bottom: 6px">
+
+              <ion-item style="--background: transparent !important;" lines="none" class="ion-no-padding">
+                <ion-label class="ion-text-wrap">
+                  <h2 class="ion-no-margin pName pTag bold">
+                    <ion-text color="dark">{{product.productName | titlecase}}</ion-text>
+                  </h2>
+                  <p class="mb-1 pDescription">
+                    <ion-text color="medium">{{product.productDescription}}</ion-text>
+                  </p>
+                  <hr>
+                  <p class="bold text-primary pTag">${{product.price}}</p>
+
+                </ion-label>
+              </ion-item>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
+
   <ion-row>
+
     <ion-col *ngFor="let product of products" size="3">
-      <ion-card (click)="productDetail()" class="ion-no-margin shadow mb-1">
+      <ion-card (click)="productDetail(product)" class="ion-no-margin shadow mb-1">
         <ion-card-content class="ion-no-padding">
           <swiper-container pagination="true">
             <swiper-slide>
@@ -56,6 +59,7 @@
               <img [src]='img'>
             </swiper-slide>
           </swiper-container>
+          <ion-badge class="badge" color="dark">Free shipping</ion-badge>
           <div style="padding-left: 10px !important;padding-bottom: 6px">
 
             <ion-item style="--background: transparent !important;" lines="none" class="ion-no-padding">
@@ -74,6 +78,6 @@
           </div>
         </ion-card-content>
       </ion-card>
-    </ion-col>
+    </ion-col> 
   </ion-row>
 </div>

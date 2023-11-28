@@ -9,14 +9,14 @@
 <hr>
 
 <ion-row>
-  <ion-col size="2" *ngFor="let cat of categories">
+  <ion-col size="2" *ngFor="let cat of dataHelper.allCategories">
     <div class="ion-text-center">
       <ion-card-content>
         <div class="imgAvatar">
-          <img [src]="cat.img" alt="">
+          <img [src]="cat?.fileUrl" alt="">
         </div>
         <ion-label>
-          <h2 style="font-size: 15px !important;" class="bold mt-1">{{cat.title | titlecase}}</h2>
+          <h2 style="font-size: 15px !important;" class="bold mt-1">{{cat.categoryTitle | titlecase}}</h2>
         </ion-label>
       </ion-card-content>
     </div>

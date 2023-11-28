@@ -13,20 +13,32 @@
             </button>
             <div class="collapse navbar-collapse" id="main_nav">
               <ul class="navbar-nav ms-auto mt-2 mb-1 mb-lg-0">
-                <li class="nav-item">
+                <li *ngIf="userAuth.currentUser.userType ==='buyer'" class="nav-item">
                   <a style="cursor: pointer !important;" class="nav-link active text-dark ms-3"
                     (click)="allProducts()">All Products</a>
                 </li>
-                <li class="nav-item ms-3">
+                <li *ngIf="userAuth.currentUser.userType !=='buyer'" class="nav-item">
+                  <a style="cursor: pointer !important;" class="nav-link active text-dark ms-3"
+                    (click)="allProducts()">My Products</a>
+                </li>
+                <li *ngIf="userAuth.currentUser.userType ==='buyer'" class="nav-item ms-3">
                   <a style="cursor: pointer !important;" class="nav-link active text-dark"
                     (click)="wishlist()">Wishlist</a>
                 </li>
-                <li class="nav-item ms-3">
+                <li *ngIf="userAuth.currentUser.userType ==='buyer'" class="nav-item ms-3">
                   <a style="cursor: pointer !important;" class="nav-link active text-dark" (click)="cart()">Cart</a>
+                </li>
+                <li class="nav-item ms-3">
+                  <button *ngIf="userAuth.currentUser.userType !=='buyer'" (click)="addProduct()"
+                    class="btn btn-primary mb-1">Add Product</button>
                 </li>
                 <li class="nav-item ms-3">
                   <button *ngIf="userAuth.currentUser.userType !=='buyer'" (click)="addCategory()"
                     class="btn btn-success mb-1">Add Category</button>
+                </li> 
+                <li class="nav-item ms-3">
+                  <button *ngIf="userAuth.currentUser.userType !=='buyer'" (click)="addCategory()"
+                    class="btn btn-info mb-1">Add Brand</button>
                 </li>
                 <li class="nav-item ms-1">
                   <button *ngIf="userAuth.isLogin" (click)="userAuth.logoutUser()"

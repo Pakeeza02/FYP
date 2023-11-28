@@ -22,3 +22,11 @@ ion-card {
 .pTag {
     font-size: 20px !important;
 }
+
+.badge {
+    font-size: 15px;
+    position: absolute;
+    top: 0;
+    right: 0% !important;
+    z-index: 999;
+}
