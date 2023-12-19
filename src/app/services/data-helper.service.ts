@@ -41,7 +41,7 @@ export class DataHelperService {
     public navCtrl: NavController
   ) {
     if (localStorage.getItem('userLoggedIn')) {
-      this.utils.presentLoading();
+      // this.utils.presentLoading();
       this.fetchAllData();
     }
     // Initialize the registrationYear array from 1990 to the current year

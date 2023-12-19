@@ -1,7 +1,6 @@
 ion-card {
     border-radius: 10px !important;
     box-shadow: none;
-
     swiper-container {
         height: 280px !important;
         width: 100% !important;
@@ -30,3 +29,31 @@ ion-card {
     right: 0% !important;
     z-index: 999;
 }
+// Responsive styles using media queries
+@media (max-width: 767px) {
+    ion-col {
+      // Adjust column size for small screens (phones)
+      size: 6 !important;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 991px) {
+    ion-col {
+      // Adjust column size for medium screens (tablets)
+      size: 6 !important;
+    }
+  }
+  
+  @media (min-width: 992px) and (max-width: 1199px) {
+    ion-col {
+      // Adjust column size for large screens (small desktops)
+      size: 4 !important;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    ion-col {
+      // Adjust column size for extra-large screens (large desktops)
+      size: 3 !important;
+    }
+  }

@@ -12,7 +12,7 @@
 <div>
   <div *ngIf="dataHelper.allProducts">
     <ion-row>
-      <ion-col *ngFor="let product of dataHelper.allProducts" size="3">
+      <ion-col *ngFor="let product of dataHelper.allProducts" size-md="6" size-lg="4" size-xl="3" >
         <ion-card (click)="productDetail(product)" class="ion-no-margin shadow mb-1">
           <ion-card-content class="ion-no-padding">
             <swiper-container pagination="true">
@@ -48,7 +48,7 @@
 
   <ion-row>
 
-    <ion-col *ngFor="let product of products" size="3">
+    <ion-col *ngFor="let product of products" size-md="6" size-lg="4" size-xl="3">
       <ion-card (click)="productDetail(product)" class="ion-no-margin shadow mb-1">
         <ion-card-content class="ion-no-padding">
           <swiper-container pagination="true">
