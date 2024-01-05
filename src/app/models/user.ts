@@ -15,4 +15,5 @@ export class iUser {
     userRole: string = '';
     userType: string;
     wishlist?: iProduct[];
+    cart?: iProduct[];
 }

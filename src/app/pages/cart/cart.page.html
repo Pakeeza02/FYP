@@ -10,19 +10,20 @@
   <div class="card mb-4">
     <div class="row">
       <div class="col-md-8 cart">
-        <ion-item lines="full" class="ion-no-padding" *ngFor="let cart of [1,2,3,4]">
-          <ion-thumbnail class="shadow" slot="start"
-            style="height: 100px !important;width: 100px !important;border-radius: 10px !important;">
+        <ion-item lines="full" class="ion-no-padding" *ngFor="let item of cartItems">
+          <ion-thumbnail class="shadow" slot="start">
             <img
-              style="height: 100px !important;width: 100px !important;border-radius: 10px !important;object-fit: cover !important;"
-              src="https://static-01.daraz.pk/p/1b1122512e26d12a4166714c00020f2e.jpg" alt="">
+              [src]="item.coverImageUrl"
+              alt="Product Image"
+            />
           </ion-thumbnail>
           <ion-label>
-            <h1 class="bold">Nail Polish</h1>
-            <p>Lorem ipsum dolor sit amet consectetur.</p>
+            <h1 class="bold">{{ item.productName }}</h1>
+            <p>{{ item.productDescription }}</p>
           </ion-label>
-          <ion-button expand="block" color="dark" class="ms-2"
-            style="font-size: 10px !important;width: 190px !important;">132*1</ion-button>
+          <ion-button expand="block" color="dark" class="ms-2">
+            {{ item.price }} * 1
+          </ion-button>
         </ion-item>
         <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
       </div>

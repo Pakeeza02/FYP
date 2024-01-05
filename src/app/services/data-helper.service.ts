@@ -51,6 +51,7 @@ export class DataHelperService {
     }
      // Initialize the wishlist property if it doesn't exist
   this.currentUser.wishlist = this.currentUser.wishlist || [];
+  this.currentUser.cart = this.currentUser.cart || [];
   }
 
   // Fetch all user and product data when the service is constructed
@@ -60,6 +61,8 @@ export class DataHelperService {
     this.getAllCategories();
     this.getAllBrands();
   }
+
+
 
   // Retrieve all user data from Firebase
   getAllUsers() {

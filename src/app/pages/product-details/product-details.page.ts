@@ -53,6 +53,39 @@ export class ProductDetailsPage implements OnInit {
       console.log('User not logged in');
     }
   }
+
+  async addToCart() {
+    // Ensure the user is logged in
+    if (this.dataHelper.currentUser && this.dataHelper.currentUser.uid) {
+      // Get the current product details
+      const currentProduct = this.dataHelper.productDetails;
+
+      // Check if the product is not already in the cart
+      if (!this.isProductInCart(currentProduct)) {
+        // Add the product to the user's cart
+        this.dataHelper.currentUser.cart = this.dataHelper.currentUser.cart || [];
+        this.dataHelper.currentUser.cart.push(currentProduct);
+
+        // Update the user's data on Firebase
+        this.dataHelper.updateDataOnFirebase(`users/${this.dataHelper.currentUser.uid}`, {
+          cart: this.dataHelper.currentUser.cart
+        });
+
+        // Display a success message
+        this.presentToast('Product added to cart');
+        console.log('Product added to cart:', currentProduct);
+      } else {
+        // Display a message indicating that the product is already in the cart
+        this.presentToast('Product is already in the cart');
+        console.log('Product is already in the cart:', currentProduct);
+      }
+    } else {
+      // Display a message indicating that the user is not logged in
+      this.presentToast('User not logged in');
+      console.log('User not logged in');
+    }
+  }
+
   
   async presentToast(message: string) {
     const toast = await this.toastController.create({
@@ -70,5 +103,13 @@ export class ProductDetailsPage implements OnInit {
       this.dataHelper.currentUser.wishlist.some((wishlistItem: any) => wishlistItem.id === product.id)
     );
   }
+
+      // Helper method to check if the product is already in the cart
+      isProductInCart(product: any): boolean {
+        return (
+          this.dataHelper.currentUser.cart &&
+          this.dataHelper.currentUser.cart.some((cartItem: any) => cartItem.id === product.id)
+        );
+      }
 
 }
