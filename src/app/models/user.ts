@@ -1,3 +1,5 @@
+import { iProduct } from 'src/app/models/product';
+
 export class iUser {
     fullName: string = "";
     phone: number;
@@ -12,4 +14,5 @@ export class iUser {
     designation: string = "";
     userRole: string = '';
     userType: string;
+    wishlist?: iProduct[];
 }

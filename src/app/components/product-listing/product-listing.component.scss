@@ -1,9 +1,13 @@
 ion-card {
     border-radius: 10px !important;
     box-shadow: none;
+
     swiper-container {
         height: 280px !important;
         width: 100% !important;
+        @media (max-width: 767px) {
+          height: 140px !important;
+        }
 
         swiper-slide {
             width: 100% !important;
@@ -13,6 +17,11 @@ ion-card {
                 height: 280px !important;
                 width: 100% !important;
                 object-fit: cover !important;
+                @media (max-width: 767px) {
+                  height: 140px !important;
+                }
+        
+
             }
         }
     }

@@ -49,6 +49,8 @@ export class DataHelperService {
     for (let i = 1990; i <= currentYear; i++) {
       this.registrationYear.push(i);
     }
+     // Initialize the wishlist property if it doesn't exist
+  this.currentUser.wishlist = this.currentUser.wishlist || [];
   }
 
   // Fetch all user and product data when the service is constructed
