@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { iProduct } from 'src/app/models/product';
+import { DataHelperService } from 'src/app/services/data-helper.service';
 
 @Component({
   selector: 'app-recommended-products',
@@ -77,12 +79,18 @@ export class RecommendedProductsComponent implements OnInit {
   ]
 
 
-  constructor(private navCtrl:NavController) { }
+  constructor(private navCtrl: NavController, public dataHelper: DataHelperService) { }
 
   ngOnInit() { }
 
-  allProduct(){
+  allProduct() {
     this.navCtrl.navigateForward(['/all-products'])
+  }
+
+  productDetail(product: iProduct) {
+    debugger
+    this.dataHelper.productDetails = this.dataHelper.deepCloneData(product);
+    this.navCtrl.navigateForward(['/product-details']);
   }
 
 }

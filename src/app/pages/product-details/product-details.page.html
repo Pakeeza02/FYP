@@ -10,9 +10,9 @@
             <swiper-container pagination="true">
               <swiper-slide>
                 <img class="images"
-                  src='https://media.wired.com/photos/6511aab1189c419c40374c92/1:1/w_1358,h_1358,c_limit/Apple-Watch-Ultra-2-Alt-Gear.jpg'>
+                  [src]="productDetail.coverImage">
               </swiper-slide>
-              <swiper-slide *ngFor="let img of imgUrls">
+              <swiper-slide *ngFor="let img of productDetail.imgUrls">
                 <img class="images" [src]='img'>
               </swiper-slide>
             </swiper-container>
@@ -22,7 +22,7 @@
         <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
           <div class="ms-3">
             <h1 class="bold name">
-              Ultra Smart Watch Series 8
+              {{productDetail.title}} <br>
               <small>Product by <a href="javascript:void(0);">ChicPicks</a></small>
               <ion-item class="ion-no-padding" lines="none">
                 <ion-icon *ngFor="let star of [1,2,3,4,5]" color="warning" name="star"></ion-icon>
@@ -34,7 +34,7 @@
             </h1>
             <hr />
             <h3 class="bold price-container">
-              $189.54
+              ${{productDetail.price}}
               <small> includes tax</small>
             </h3>
             <div class="certified">
@@ -50,17 +50,16 @@
             <hr />
             <h2 class="bold">Product Description</h2>
             <p><ion-text color="medium">
-                T800 Ultra Product size?44*38*13mm CPU?YC1133 Flash?32M GPS/AGPS?NO G-sensor?YES M-sensor?YES Wifi:NO
-                SIM:NO BT:5.0 LCD 1.99" TP:cob capacitance multi functionality.
+                {{productDetail.productDescription}}
               </ion-text></p>
             <hr />
             <div class="row">
               <div class="col-sm-12 col-md-6 col-lg-6">
-                <a (click)="addToCart()" class="btn btn-success btn-lg">Add to cart ($129.54)</a>
+                <a class="btn btn-success btn-lg">Add to cart $({{productDetail.price}})</a>
               </div>
               <div class="col-sm-12 col-md-6 col-lg-6">
                 <div class="btn-group pull-right">
-                  <button (click)="addToWishlist()" style="font-size: 13px !important;" class="btn btn-primary btn-default">
+                  <button style="font-size: 13px !important;" class="btn btn-primary btn-default">
                     Add to wishlist
                   </button>
                   <button style="font-size: 13px !important;" class="btn btn-secondary btn-default"> Contact

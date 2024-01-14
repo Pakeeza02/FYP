@@ -13,7 +13,5 @@ export class iUser {
     isVerified: boolean = false;
     designation: string = "";
     userRole: string = '';
-    userType: string;
-    wishlist?: iProduct[];
-    cart?: iProduct[];
+    userType: string; 
 }

@@ -218,12 +218,26 @@ export class ProductListingComponent implements OnInit {
     }, 500);
   }
 
+  isProductInWishlist(selectedProduct) {
+    const wishListProducts = JSON.parse(localStorage.getItem('wishList')) || [];
+    const index = wishListProducts.findIndex(x => x.id === selectedProduct.id);
+    return index >= 0;
+  }
+
   // productDetail() {
   //   this.navCtrl.navigateForward(['/product-details']);
   // }
 
+  addWishlist(product) {
+    this.dataHelper.addWishlist(product);
+  }
+
+  addToCart(product) {
+    this.dataHelper.addToCart(product);
+  }
+
   // Navigate to the car details page
-  productDetail(product: iProduct) {
+  productDetail(product: any) {
     this.dataHelper.productDetails = this.dataHelper.deepCloneData(product);
     this.navCtrl.navigateForward(['/product-details']);
   }

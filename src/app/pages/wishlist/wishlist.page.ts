@@ -16,10 +16,6 @@ export class WishlistPage implements OnInit {
   }
 
   // Load wishlist items from DataHelperService
-  loadWishlistItems() {
-    // Ensure the user is logged in
-    if (this.dataHelper.currentUser && this.dataHelper.currentUser.wishlist) {
-      this.wishlistItems = this.dataHelper.currentUser.wishlist;
-    }
+  loadWishlistItems() { 
   }
 }

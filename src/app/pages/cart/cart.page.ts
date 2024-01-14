@@ -11,17 +11,26 @@ import { iProduct } from 'src/app/models/product';
 })
 export class CartPage implements OnInit {
   cartItems: iProduct[] = [];
+  myCart = [];
 
   constructor(
     public utils: UtilsProviderService,
     private navCtrl: NavController,
     private dataHelper: DataHelperService
-  ) {}
+  ) { }
 
-  ngOnInit() {
-    // Fetch cart items when the page is initialized
-    this.cartItems = this.dataHelper.currentUser.cart || [];
+  ngOnInit() { }
+
+  ionViewWillEnter() {
+    let products = JSON.parse(localStorage.getItem('myCart'));
+    this.myCart = products || [];
   }
+
+  removeItemFromCart(selectedProduct) {
+    this.dataHelper.removeItem(selectedProduct, 'myCart');
+    this.ionViewWillEnter();
+  }
+
 
   orderPlaced() {
     this.utils.createToast('Order has been placed successfully!');

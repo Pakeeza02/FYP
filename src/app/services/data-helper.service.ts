@@ -5,7 +5,7 @@ import { UtilsProviderService } from './utils-provider.service';
 import { Subject } from 'rxjs';
 import firebase from 'firebase';
 import { iFilter } from '../models/filter';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { iProduct } from '../models/product';
 import { iCategory } from '../models/category';
 import { iBrand } from '../models/brand';
@@ -38,7 +38,8 @@ export class DataHelperService {
 
   constructor(
     public utils: UtilsProviderService,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    public alertController:AlertController
   ) {
     if (localStorage.getItem('userLoggedIn')) {
       // this.utils.presentLoading();
@@ -49,9 +50,6 @@ export class DataHelperService {
     for (let i = 1990; i <= currentYear; i++) {
       this.registrationYear.push(i);
     }
-     // Initialize the wishlist property if it doesn't exist
-  this.currentUser.wishlist = this.currentUser.wishlist || [];
-  this.currentUser.cart = this.currentUser.cart || [];
   }
 
   // Fetch all user and product data when the service is constructed
@@ -63,7 +61,54 @@ export class DataHelperService {
   }
 
 
+  addWishlist(product) {
+    if (this.isProductInWishlist(product)) {
+      this.removeItem(product, 'wishList');
+    } else {
+      const wishlistProducts = JSON.parse(localStorage.getItem('wishList')) || [];
+      const index = wishlistProducts.findIndex(x => x.id === product.id);
+      if (index < 0) {
+        wishlistProducts.push(product);
+        localStorage.setItem('wishList', JSON.stringify(wishlistProducts));
+      }
+      this.displayToastMsg('Alert', 'This product has been added to wishlist successfully!');
+    }
+  }
 
+  async displayToastMsg(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons: ['OK'],
+      mode: 'ios',
+    });
+    await alert.present();
+  }
+
+  isProductInWishlist(selectedProduct) {
+    const wishListProducts = JSON.parse(localStorage.getItem('wishList')) || [];
+    const index = wishListProducts.findIndex(x => x.id === selectedProduct.id);
+    return index >= 0;
+  }
+
+  addToCart(product) {
+    const myCart = JSON.parse(localStorage.getItem('myCart')) || [];
+    const index = myCart.findIndex(x => x.id === product.id);
+    if (index < 0) {
+      myCart.push(product);
+      localStorage.setItem('myCart', JSON.stringify(myCart));
+    }
+    this.displayToastMsg('Alert', 'This product has been added to your cart successfully!');
+  }
+
+  removeItem(selectedProduct, storageType: string) {
+    const wishListProducts = JSON.parse(localStorage.getItem(storageType)) || [];
+    const index = wishListProducts.findIndex(x => x.id === selectedProduct.id);
+    wishListProducts.splice(index, 1);
+    localStorage.setItem(storageType, JSON.stringify(wishListProducts));
+    const message = storageType === 'myCart' ? 'cart!' : 'wishlist';
+    this.displayToastMsg('Alert', `This product has been removed from your ${message}`);
+  }
   // Retrieve all user data from Firebase
   getAllUsers() {
     this.getFirebaseData('users')

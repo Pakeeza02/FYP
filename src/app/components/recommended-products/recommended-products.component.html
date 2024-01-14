@@ -14,7 +14,7 @@
 <div>
   <ion-row>
     <ion-col *ngFor="let product of products" size="2">
-      <ion-card routerLink="/product-details" class="ion-no-margin shadow mb-1">
+      <ion-card (click)="productDetail(product)" routerLink="/product-details" class="ion-no-margin shadow mb-1">
         <ion-card-content class="ion-no-padding">
           <swiper-container pagination="true">
             <swiper-slide>

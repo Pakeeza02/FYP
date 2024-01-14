@@ -43,14 +43,11 @@ export class LoginPage implements OnInit {
   }
 
   loginAccount(formData: any) {
-    debugger
     try {
       console.log('Login button clicked.');
       this.dataHelper.displayLoading = true;
-      debugger
       this.userAuth.loginUser(formData)
         .then((data) => {
-          debugger
           if (data) {
             this.getUserData(data.user.uid);
           }

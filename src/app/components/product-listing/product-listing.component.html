@@ -12,7 +12,7 @@
 <div>
   <div *ngIf="dataHelper.allProducts">
     <ion-row>
-      <ion-col *ngFor="let product of dataHelper.allProducts" size-md="6" size-lg="4" size-xl="3" >
+      <ion-col *ngFor="let product of dataHelper.allProducts" size-md="6" size-lg="4" size-xl="3">
         <ion-card (click)="productDetail(product)" class="ion-no-margin shadow mb-1">
           <ion-card-content class="ion-no-padding">
             <swiper-container pagination="true">
@@ -23,6 +23,8 @@
                 <img [src]='img'>
               </swiper-slide> -->
             </swiper-container>
+            <ion-icon (click)="addWishlist(product)" color="{{isProductInWishlist(product) ? 'danger' : 'medium'}}"
+              class="heart" color="medium" name="heart"></ion-icon>
             <ion-badge class="badge" color="dark">{{product?.discountType}}</ion-badge>
             <div style="padding-left: 10px !important;padding-bottom: 6px">
 
@@ -78,6 +80,6 @@
           </div>
         </ion-card-content>
       </ion-card>
-    </ion-col> 
+    </ion-col>
   </ion-row>
 </div>
