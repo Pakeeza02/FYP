@@ -9,8 +9,7 @@
           <div class="product-image">
             <swiper-container pagination="true">
               <swiper-slide>
-                <img class="images"
-                  [src]="productDetail.coverImage">
+                <img class="images" [src]="productDetail.coverImage">
               </swiper-slide>
               <swiper-slide *ngFor="let img of productDetail.imgUrls">
                 <img class="images" [src]='img'>
@@ -55,11 +54,13 @@
             <hr />
             <div class="row">
               <div class="col-sm-12 col-md-6 col-lg-6">
-                <a class="btn btn-success btn-lg">Add to cart $({{productDetail.price}})</a>
+                <a (click)="addToCart(productDetail)" class="btn btn-success btn-lg">Add to cart
+                  $({{productDetail.price}})</a>
               </div>
               <div class="col-sm-12 col-md-6 col-lg-6">
                 <div class="btn-group pull-right">
-                  <button style="font-size: 13px !important;" class="btn btn-primary btn-default">
+                  <button (click)="addWishlist(productDetail)" style="font-size: 13px !important;"
+                    class="btn btn-primary btn-default">
                     Add to wishlist
                   </button>
                   <button style="font-size: 13px !important;" class="btn btn-secondary btn-default"> Contact

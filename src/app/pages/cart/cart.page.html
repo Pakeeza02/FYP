@@ -10,15 +10,12 @@
   <div class="card mb-4">
     <div class="row">
       <div class="col-md-8 cart">
-        <ion-item lines="full" class="ion-no-padding" *ngFor="let item of cartItems">
+        <ion-item lines="full" class="ion-no-padding" *ngFor="let item of myCart">
           <ion-thumbnail class="shadow" slot="start">
-            <img
-              [src]="item.coverImageUrl"
-              alt="Product Image"
-            />
+            <img [src]="item.coverImage" alt="Product Image" />
           </ion-thumbnail>
           <ion-label>
-            <h1 class="bold">{{ item.productName }}</h1>
+            <h1 class="bold">{{ item.title | titlecase }}</h1>
             <p>{{ item.productDescription }}</p>
           </ion-label>
           <ion-button expand="block" color="dark" class="ms-2">
@@ -33,22 +30,22 @@
         </div>
         <hr>
         <div class="row">
-          <div class="col" style="padding-left:0;">ITEMS 3</div>
-          <div class="col text-right">&euro; 132.00</div>
+          <div class="col" style="padding-left:0;">ITEMS {{ totalItems }}</div>
+          <div class="col text-right">${{ totalPrice ? totalPrice.toFixed(2) : '0.00' }}</div>
         </div>
         <form>
           <p>SHIPPING</p>
           <select>
-            <option class="text-muted">Standard-Delivery- &euro;5.00</option>
+            <option class="text-muted">Standard-Delivery- $5.00</option>
           </select>
           <p>GIVE CODE</p>
           <input id="code" placeholder="Enter your code">
         </form>
         <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
           <div class="col">TOTAL PRICE</div>
-          <div class="col text-right">$137.00</div>
+          <div class="col text-right">${{grandTotal}}</div>
         </div>
-        <button class="btn" (click)="orderPlaced()">CHECKOUT</button>
+        <button class="btn" (click)="orderPlaced()">CHECKOUT (${{grandTotal}})</button>
       </div>
     </div>
 

@@ -68,22 +68,32 @@
             <h4 class="text-center  fw-semibold">More Informations</h4>
             <div class="form-group mb-1">
               <label class="mb-1">Discount Type</label>
-              <select formControlName="productCharactristics" class=" form-select">
+              <select formControlName="discountType" class=" form-select">
                 <option value="Free">Free Shipping</option>
                 <option value="OFF">25% OFF</option>
               </select>
-              <p class="errorMsg" *ngIf="productForm.get('productCharactristics')?.hasError('required') && 
-          (productForm.get('productCharactristics')?.dirty || productForm.get('productCharactristics')?.touched)">
+              <p class="errorMsg" *ngIf="productForm.get('discountType')?.hasError('required') && 
+          (productForm.get('discountType')?.dirty || productForm.get('discountType')?.touched)">
                 *this field is required!
               </p>
+            </div> 
+            <div class="add-photo-container mt-3" (click)="filePicker.click()">
+              <div class="container">
+                <ion-icon name="camera-outline" class="add-photo-icon"></ion-icon>
+                <p>ADD PRODUCT IMAGES</p>
+              </div>
+              <p>Tap an Image to edit them. To reorder, select the image hold and drag</p>
+              <input (change)="onChangeFile($event)" accept="image/*" multiple="true" hidden #filePicker type="file"
+                class="form-control">
             </div>
-            <div class=" form-group">
-              <p>{{productFile ? productFile.name : 'No file selected!'}}</p>
-              <button (click)="filePicker.click()" class="btn btn-sm btn-primary">Choose product
-                Images</button>
-              <input (change)="onChangeFile($event)" hidden #filePicker type="file" class="form-control btn">
-            </div>
-
+            <ion-row class="ion-no-border margin_top_16" lines="none">
+              <ion-col size="3" *ngFor="let img of imageFiles; let i =index" style="padding-left: 10px;">
+                <div class="image_div">
+                  <img [src]=img.img width="100" height="100" style="border-radius: 10.462px;">
+                  <img src="../../assets/del.svg" style="position: absolute; top: 0;right: -2px;" (click)="delteImage(i)">
+                </div>
+              </ion-col>
+            </ion-row>
           </div>
         </div>
       </div>

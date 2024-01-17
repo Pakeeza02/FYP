@@ -20,20 +20,21 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of wishlistItems">
+                <tr *ngFor="let item of wishListProducts">
                   <td width="45%">
                     <div class="display-flex align-center">
                       <div class="img-product">
-                        <img [src]="item.image" alt="" class="mCS_img_loaded">
+                        <img [src]="item.coverImage" alt="" class="mCS_img_loaded">
                       </div>
                       <div class="name-product">
-                        {{ item.productName }}
+                        {{ item.title }}
                       </div>
                     </div>
                   </td>
                   <td width="15%" class="price">{{ item.price | currency }}</td>
-                  <td width="15%"><span class="in-stock-box">{{ item.stockStatus }}</span></td>
-                  <td width="15%"><button class="round-black-btn small-btn">Add to Cart</button></td>
+                  <td width="15%"><span class="in-stock-box">{{ item.stockStatus || 100}}</span></td>
+                  <td width="15%"><button (click)="addToCart(item)" class="round-black-btn small-btn">Add to
+                      Cart</button></td>
                 </tr>
               </tbody>
             </table>

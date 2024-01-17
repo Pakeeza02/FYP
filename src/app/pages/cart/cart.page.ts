@@ -10,8 +10,11 @@ import { iProduct } from 'src/app/models/product';
   styleUrls: ['./cart.page.scss'],
 })
 export class CartPage implements OnInit {
-  cartItems: iProduct[] = [];
+
   myCart = [];
+  grandTotal:any;
+  totalItems: number = 0;
+  totalPrice: any;
 
   constructor(
     public utils: UtilsProviderService,
@@ -22,13 +25,36 @@ export class CartPage implements OnInit {
   ngOnInit() { }
 
   ionViewWillEnter() {
-    let products = JSON.parse(localStorage.getItem('myCart'));
-    this.myCart = products || [];
+    this.loadCartData().then(() => {
+      this.calculateTotal();
+    });
+  }
+
+  async loadCartData() {
+    return new Promise<void>((resolve) => {
+      let products = JSON.parse(localStorage.getItem('myCart'));
+      this.myCart = products || [];
+      resolve();
+    });
   }
 
   removeItemFromCart(selectedProduct) {
     this.dataHelper.removeItem(selectedProduct, 'myCart');
     this.ionViewWillEnter();
+  }
+
+  calculateTotal() {
+    this.totalItems = this.myCart.length;
+    this.totalPrice = 0;
+
+    this.myCart.forEach(element => {
+      this.totalPrice += element.price;
+    });
+    console.log('Intermediate Total Price:', this.totalPrice);
+
+    this.totalPrice = Number(this.totalPrice.toFixed(2));
+    console.log('Final Total Price:', this.totalPrice);
+    this.grandTotal = this.totalPrice + 5;
   }
 
 

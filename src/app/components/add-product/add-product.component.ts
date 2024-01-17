@@ -8,6 +8,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UtilsProviderService } from 'src/app/services/utils-provider.service';
 import firebase from 'firebase';
 import { iProduct } from 'src/app/models/product';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-product',
@@ -21,6 +22,7 @@ export class AddProductComponent implements OnInit {
   productForm: FormGroup;
   productFile: any;
   newFile: boolean;
+  imageFiles: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -30,6 +32,7 @@ export class AddProductComponent implements OnInit {
     public toastr: ToastrService,
     public userAuth: UserAuthService,
     public utils: UtilsProviderService,
+    public toast: ToastController
   ) {
   }
 
@@ -42,23 +45,42 @@ export class AddProductComponent implements OnInit {
       mku: [this.product.mku, Validators.compose([Validators.required])],
       productCategory: [this.product.productCategory, Validators.compose([Validators.required])],
     });
+  }
 
-    if (this.product.coverImageUrl) {
-      this.productFile = {
-        name: 'File Selected',
-      }
-    }
+  delteImage(i: number) {
+    this.imageFiles.splice(i, 1);
   }
 
   onChangeFile(event: any) {
     let selectedFile: any = (<HTMLInputElement>event.target).files;
-    this.productFile = selectedFile[0];
-    this.newFile = true;
+    if (selectedFile.length > 0) {
+      if (selectedFile.length > 10) {
+        this.showToast('Please select a maximum of 10 images.', 'danger');
+      } else {
+        for (let i = 0; i < selectedFile.length; i++) {
+          const file = selectedFile[i];
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onloadend = () => {
+            const base64String = reader.result as string;
+            this.imageFiles.push({ img: base64String, file: file });
+          };
+        };
+      }
+    }
     event.target.value = '';
   }
 
+  showToast(message: string, color = 'success', duration: number = 2000) {
+    this.toast.create({
+      message,
+      duration,
+      color
+    }).then(toast => toast.present());
+  }
+
   submitFormData(formData: any) {
-    if (!this.productFile) {
+    if (!this.imageFiles) {
       this.toastr.error("Choose Image!");
       return;
     }
@@ -73,28 +95,60 @@ export class AddProductComponent implements OnInit {
     this.product.price = formData.price;
     this.product.mku = formData.mku;
     this.product.sellerUid = this.userAuth.currentUser.uid;
-    this.newFile ? this.uploadFile() : this.saveProduct();
+    // Assign the first file from imageFiles to productFile
+    this.productFile = this.imageFiles[0]?.file;
+    this.imageFiles ? this.uploadFile() : this.saveProduct();
   }
-
   uploadFile() {
     const self = this;
     self.dataHelper.displayLoading = true;
-    let fileName = self.getFileName();
-    firebase.storage().ref(fileName)
-      .put(self.productFile).then((result) => {
-        result.ref.getDownloadURL().then((url) => {
-          self.dataHelper.displayLoading = false;
-          this.product.coverImageUrl = url;
-          self.saveProduct();
-        }).catch((err) => {
-          self.toastr.error(err);
-        });
-      }).catch((err) => {
+
+    const uploadPromises: Promise<any>[] = []; 
+    for (let i = 0; i < self.imageFiles.length; i++) {
+      const file = self.imageFiles[i].file;
+      const fileName = self.getFileName();
+
+      const uploadTask = firebase.storage().ref(fileName).put(file);
+      const uploadPromise = new Promise<any>((resolve, reject) => {
+        uploadTask.on(
+          firebase.storage.TaskEvent.STATE_CHANGED,
+          (snapshot) => {
+            // You can track the progress here if needed
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log(`Upload is ${progress}% done`);
+          },
+          (error) => {
+            // Handle errors during the upload
+            reject(error);
+          },
+          () => {
+            // The upload is complete, resolve with the download URL
+            uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+              resolve(url);
+            });
+          }
+        );
+      });
+
+      uploadPromises.push(uploadPromise);
+    }
+
+    Promise.all(uploadPromises)
+      .then((urls) => {
+        console.log('Download URLs:', urls);
+        // Set the download URLs in the product object
+        self.product.imageUrls = urls;
+        // Call saveProduct here, inside the then block
+        self.saveProduct();
+      })
+      .catch((err) => {
         self.toastr.error(err);
       });
   }
 
+
   saveProduct() {
+    debugger
     this.activeModal.close({ product: this.product });
   }
 

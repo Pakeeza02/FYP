@@ -7,7 +7,6 @@ export class iProduct {
     productCategory: string;
     createdOn: number;
     imageUrls: string[] = [];
-    coverImageUrl: string;
     productId: string;
     price: number;
 }

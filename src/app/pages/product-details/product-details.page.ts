@@ -39,4 +39,41 @@ export class ProductDetailsPage implements OnInit {
     toast.present();
   }
 
+  isProductInWishlist(selectedProduct) {
+    const wishListProducts = JSON.parse(localStorage.getItem('wishList')) || [];
+    const index = wishListProducts.findIndex(x => x.id === selectedProduct.id);
+    return index >= 0;
+  }
+
+  addWishlist(product) {
+    const wishListProducts = JSON.parse(localStorage.getItem('wishList')) || [];
+    console.log('Existing Wishlist:', wishListProducts);
+    // Check if the product is already in the wishlist
+    const index = wishListProducts.findIndex(x => x.id === product.id);
+
+    if (index === -1) {
+      // Product not in wishlist, add it
+      wishListProducts.push(product);
+      localStorage.setItem('wishList', JSON.stringify(wishListProducts));
+      console.log('Updated Wishlist:', wishListProducts);
+    } else {
+      // Product is already in the wishlist, handle accordingly (maybe show a message)
+      console.log('Product is already in the wishlist');
+    }
+  }
+
+  addToCart(product) {
+    const cartProducts = JSON.parse(localStorage.getItem('myCart')) || [];
+    const index = cartProducts.findIndex(x => x.id === product.id);
+
+    if (index === -1) {
+      cartProducts.push(product);
+      localStorage.setItem('myCart', JSON.stringify(cartProducts));
+      this.presentToast('Product added to cart');
+    } else {
+      // Product is already in the cart, handle accordingly (maybe show a message)
+      console.log('Product is already in the cart');
+    }
+  }
+
 }
