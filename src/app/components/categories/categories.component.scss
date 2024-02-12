@@ -6,3 +6,14 @@
         border-radius: 40px !important;
     }
 }
+.horizontal-scroll-container {
+    overflow-x: scroll ;
+    white-space: nowrap;
+  }
+  
+  .horizontal-scroll-container ion-row {
+    display: flex;
+  }
+  
+  
+  
