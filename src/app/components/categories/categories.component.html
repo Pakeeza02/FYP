@@ -8,21 +8,17 @@
 
 <hr>
 
-<div class="horizontal-scroll-container">
-  <ion-row>
-    <ng-container *ngFor="let cat of dataHelper.allCategories">
-      <ion-col size="2">
-        <div class="ion-text-center">
-          <ion-card-content>
-            <div class="imgAvatar">
-              <img [src]="cat?.fileUrl" alt="">
-            </div>
-            <ion-label>
-              <h2 style="font-size: 15px !important;" class="bold mt-1">{{cat.categoryTitle | titlecase}}</h2>
-            </ion-label>
-          </ion-card-content>
+<div class="horizontalScroll2">
+  <div class="reviewCard1" *ngFor="let cat of dataHelper.allCategories">
+    <div class="ion-text-center">
+      <ion-card-content>
+        <div class="imgAvatar">
+          <img [src]="cat?.fileUrl" alt="">
         </div>
-      </ion-col>
-    </ng-container>
-  </ion-row>
+        <ion-label>
+          <h2 style="font-size: 15px !important;" class="bold mt-1">{{cat.categoryTitle | titlecase}}</h2>
+        </ion-label>
+      </ion-card-content>
+    </div>
+  </div>
 </div>

@@ -30,3 +30,21 @@ ion-card {
     text-overflow: ellipsis;
     -webkit-line-clamp: 2;
 }
+
+.horizontalScroll2 {
+    overflow-x: scroll;
+    white-space: nowrap;
+
+    div {
+        border-radius: 12px;
+        padding-top: 10px !important;
+    }
+
+    .reviewCard1 {
+        display: inline-block;
+        width: 240px !important;
+        border-radius: 8px;
+        white-space: initial;
+        box-shadow: 5px 5px 20px 0px rgb(240 239 239);
+    }
+}

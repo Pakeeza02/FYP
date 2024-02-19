@@ -13,27 +13,24 @@
 
   <ion-row>
 
-    <ion-col *ngFor="let product of products" size-md="6" size-lg="4" size-xl="3">
+    <ion-col *ngFor="let product of dataHelper.allProducts" size-md="6" size-lg="4" size-xl="3">
       <ion-card (click)="productDetail(product)" class="ion-no-margin shadow mb-1">
         <ion-card-content class="ion-no-padding">
           <swiper-container pagination="true">
-            <swiper-slide>
-              <img [src]='product.coverImage'>
-            </swiper-slide>
-            <swiper-slide *ngFor="let img of product.imgUrls">
+            <swiper-slide *ngFor="let img of product.imageUrls">
               <img [src]='img'>
             </swiper-slide>
           </swiper-container>
-          <ion-badge class="badge" color="dark">Free shipping</ion-badge>
+          <ion-badge class="badge" color="dark">{{product.discountType}}</ion-badge>
           <div style="padding-left: 10px !important;padding-bottom: 6px">
 
             <ion-item style="--background: transparent !important;" lines="none" class="ion-no-padding">
               <ion-label class="ion-text-wrap">
                 <h2 class="ion-no-margin pName pTag bold">
-                  <ion-text color="dark">{{product.title | titlecase}}</ion-text>
+                  <ion-text color="dark">{{product.productName | titlecase}}</ion-text>
                 </h2>
                 <p class="mb-1 pDescription">
-                  <ion-text color="medium">{{product.description}}</ion-text>
+                  <ion-text color="medium">{{product.productDescription}}</ion-text>
                 </p>
                 <hr>
                 <p class="bold text-primary pTag">${{product.price}}</p>

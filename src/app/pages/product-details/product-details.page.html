@@ -8,10 +8,7 @@
         <div class="col-md-5 col-sm-12 col-xs-12">
           <div class="product-image">
             <swiper-container pagination="true">
-              <swiper-slide>
-                <img class="images" [src]="productDetail.coverImage">
-              </swiper-slide>
-              <swiper-slide *ngFor="let img of productDetail.imgUrls">
+              <swiper-slide *ngFor="let img of productDetail.imageUrls">
                 <img class="images" [src]='img'>
               </swiper-slide>
             </swiper-container>
@@ -21,7 +18,7 @@
         <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
           <div class="ms-3">
             <h1 class="bold name">
-              {{productDetail.title}} <br>
+              {{productDetail.productName}} <br>
               <small>Product by <a href="javascript:void(0);">ChicPicks</a></small>
               <ion-item class="ion-no-padding" lines="none">
                 <ion-icon *ngFor="let star of [1,2,3,4,5]" color="warning" name="star"></ion-icon>
@@ -31,7 +28,12 @@
                 <h3 class="bold">(109) Reviews</h3>
               </span>
             </h1>
+            <h3 class="mt-2 bold price-container">
+              <small>Product Category</small>
+              {{productDetail.productCategory | titlecase}}
+            </h3>
             <hr />
+
             <h3 class="bold price-container">
               ${{productDetail.price}}
               <small> includes tax</small>

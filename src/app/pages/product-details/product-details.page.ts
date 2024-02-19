@@ -18,7 +18,7 @@ export class ProductDetailsPage implements OnInit {
     "https://m.media-amazon.com/images/I/71Cv9lpxuiL._AC_UF1000,1000_QL80_.jpg"
   ];
 
-  productDetail: any;
+  productDetail: iProduct;
 
   constructor(public dataHelper: DataHelperService,
     public httpHelper: HttpHelperService,

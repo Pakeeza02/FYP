@@ -1,19 +1,35 @@
 .imgAvatar {
-    img {
-        height: 80px;
-        object-fit: cover !important;
-        width: 80px;
-        border-radius: 40px !important;
-    }
+  img {
+    height: 80px;
+    object-fit: cover !important;
+    width: 80px;
+    border-radius: 40px !important;
+  }
 }
+
 .horizontal-scroll-container {
-    overflow-x: scroll ;
-    white-space: nowrap;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.horizontal-scroll-container ion-row {
+  display: flex;
+}
+
+.horizontalScroll2 {
+  overflow-x: scroll;
+  white-space: nowrap;
+
+  div {
+    border-radius: 12px;
+    padding-top: 10px !important;
   }
-  
-  .horizontal-scroll-container ion-row {
-    display: flex;
+
+  .reviewCard1 {
+    display: inline-block;
+    width: 240px !important;
+    border-radius: 8px;
+    white-space: initial;
+    box-shadow: 5px 5px 20px 0px rgb(240 239 239);
   }
-  
-  
-  
+}
