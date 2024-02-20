@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { iCategory } from 'src/app/models/category';
 import { DataHelperService } from 'src/app/services/data-helper.service';
 
 @Component({
@@ -8,8 +10,13 @@ import { DataHelperService } from 'src/app/services/data-helper.service';
 })
 export class CategoriesComponent implements OnInit {
 
-  constructor(public dataHelper: DataHelperService) { }
+  constructor(public dataHelper: DataHelperService, public navCtrl: NavController) { }
 
   ngOnInit() { }
+
+  navigateCategoryToServices(category: iCategory) {
+    this.dataHelper.selectedCategory = category
+    this.navCtrl.navigateForward(['/related-product']);
+  }
 
 }

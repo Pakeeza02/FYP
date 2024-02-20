@@ -5,6 +5,7 @@ export class iProduct {
     discountType: string;
     mku: string;
     productCategory: string;
+    productBrand: string;
     createdOn: number;
     imageUrls: string[] = [];
     productId: string;

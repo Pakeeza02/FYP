@@ -20,6 +20,7 @@ export class DataHelperService {
   selectedChat: iChatNode;
   displayLoading: boolean;
   allproducts: iProduct[] = [];
+  selectedCategory: iCategory;
   showInfoSavedPopup: boolean;
   registrationYear: number[] = [];
   carCompany: string[] = ['Toyota', 'Honda', 'Suzuki', 'KIA', 'Hyundai', 'Nissan', 'Mitsubishi', 'Mercedes-Benz', 'Audi', 'BMW',];
@@ -39,7 +40,7 @@ export class DataHelperService {
   constructor(
     public utils: UtilsProviderService,
     public navCtrl: NavController,
-    public alertController:AlertController
+    public alertController: AlertController
   ) {
     if (localStorage.getItem('userLoggedIn')) {
       // this.utils.presentLoading();
@@ -109,7 +110,7 @@ export class DataHelperService {
     const message = storageType === 'myCart' ? 'cart!' : 'wishlist';
     this.displayToastMsg('Alert', `This product has been removed from your ${message}`);
   }
-  // Retrieve all user data from Firebase
+
   getAllUsers() {
     this.getFirebaseData('users')
       .then((snapshot) => {
@@ -119,7 +120,6 @@ export class DataHelperService {
       });
   }
 
-  // Retrieve the current user's data from Firebase
   getCurrentUser() {
     const uid = localStorage.getItem('uid');
     this.getFirebaseData(`/users/${uid}`)

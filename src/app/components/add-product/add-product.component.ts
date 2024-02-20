@@ -44,6 +44,7 @@ export class AddProductComponent implements OnInit {
       price: [this.product.price, Validators.compose([Validators.required])],
       mku: [this.product.mku, Validators.compose([Validators.required])],
       productCategory: [this.product.productCategory, Validators.compose([Validators.required])],
+      productBrand: [this.product.productBrand, Validators.compose([Validators.required])],
     });
   }
 
@@ -103,7 +104,7 @@ export class AddProductComponent implements OnInit {
     const self = this;
     self.dataHelper.displayLoading = true;
 
-    const uploadPromises: Promise<any>[] = []; 
+    const uploadPromises: Promise<any>[] = [];
     for (let i = 0; i < self.imageFiles.length; i++) {
       const file = self.imageFiles[i].file;
       const fileName = self.getFileName();
@@ -148,7 +149,6 @@ export class AddProductComponent implements OnInit {
 
 
   saveProduct() {
-    debugger
     this.activeModal.close({ product: this.product });
   }
 

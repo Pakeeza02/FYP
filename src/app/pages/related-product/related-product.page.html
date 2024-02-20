@@ -1,0 +1,44 @@
+<app-header></app-header>
+
+<ion-content class="ion-padding">
+  <div style="margin-top: 120px !important;">
+    <h3>Product related to {{dataHelper.selectedCategory.categoryTitle | titlecase}}</h3>
+  </div>
+
+  <div class="mt-2">
+    <ion-row>
+
+      <ion-col *ngFor="let product of categoryRelatedProducts" size-md="6" size-lg="4" size-xl="3">
+        <ion-card (click)="productDetail(product)" class="ion-no-margin shadow mb-1">
+          <ion-card-content class="ion-no-padding">
+            <swiper-container pagination="true">
+              <swiper-slide *ngFor="let img of product.imageUrls">
+                <img [src]='img'>
+              </swiper-slide>
+            </swiper-container>
+            <ion-badge class="badge" color="dark">{{product.discountType}}</ion-badge>
+            <div style="padding-left: 10px !important;padding-bottom: 6px">
+
+              <ion-item style="--background: transparent !important;" lines="none" class="ion-no-padding">
+                <ion-label class="ion-text-wrap">
+                  <h2 class="ion-no-margin pName pTag bold">
+                    <ion-text color="dark">{{product.productName | titlecase}}</ion-text>
+                  </h2>
+                  <p class="mb-1 pDescription">
+                    <ion-text color="medium">{{product.productDescription}}</ion-text>
+                  </p>
+                  <hr>
+                  <p class="bold text-primary pTag">${{product.price}}</p>
+
+                </ion-label>
+              </ion-item>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <app-footer></app-footer>
+
+</ion-content>

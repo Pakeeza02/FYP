@@ -14,15 +14,16 @@
             <div class="form-group mb-1">
               <label class="mb-1">Product Category</label>
               <select formControlName="productCategory" class=" form-select">
-                <option value="Cosmetics">Cosmetics</option>
-                <option value="Cloths">Cloths</option>
-                <option value="Accessories">Accessories</option>
+                <option *ngFor="let category of dataHelper.allCategories" [value]="category.categoryTitle">
+                  {{category.categoryTitle |
+                  titlecase}}</option>
               </select>
               <p class="errorMsg" *ngIf="productForm.get('productCategory')?.hasError('required') && 
           (productForm.get('productCategory')?.dirty || productForm.get('productCategory')?.touched)">
                 *this field is required!
               </p>
             </div>
+
             <div class="form-group mb-1">
               <label class="mb-1">Product Title</label>
               <input formControlName="productName" type="text" placeholder="Product Title" class="form-control ">
@@ -76,7 +77,18 @@
           (productForm.get('discountType')?.dirty || productForm.get('discountType')?.touched)">
                 *this field is required!
               </p>
-            </div> 
+            </div>
+            <div class="form-group mb-1">
+              <label class="mb-1">Product Brand</label>
+              <select formControlName="productBrand" class=" form-select">
+                <option *ngFor="let brand of dataHelper.allBrands" [value]="brand.brandTitle">{{brand.brandTitle |
+                  titlecase}}</option>
+              </select>
+              <p class="errorMsg" *ngIf="productForm.get('productBrand')?.hasError('required') && 
+          (productForm.get('productBrand')?.dirty || productForm.get('productBrand')?.touched)">
+                *this field is required!
+              </p>
+            </div>
             <div class="add-photo-container mt-3" (click)="filePicker.click()">
               <div class="container">
                 <ion-icon name="camera-outline" class="add-photo-icon"></ion-icon>
@@ -90,7 +102,8 @@
               <ion-col size="3" *ngFor="let img of imageFiles; let i =index" style="padding-left: 10px;">
                 <div class="image_div">
                   <img [src]=img.img width="100" height="100" style="border-radius: 10.462px;">
-                  <img src="../../assets/del.svg" style="position: absolute; top: 0;right: -2px;" (click)="delteImage(i)">
+                  <img src="../../assets/del.svg" style="position: absolute; top: 0;right: -2px;"
+                    (click)="delteImage(i)">
                 </div>
               </ion-col>
             </ion-row>
