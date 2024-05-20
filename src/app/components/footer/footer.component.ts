@@ -47,16 +47,16 @@ export class FooterComponent implements OnInit {
       title: 'Buyer',
       icon: 'https://assets.website-files.com/63a1773692843c14b3b68ca0/63a1773692843c2e9ab68d1b_S.svg',
       subLinks: [
-        { title: 'Pricing', url: '#' },
-        { title: 'Blog', url: '#' }
+        { title: 'Products', url: '#' },
+        { title: 'Categories', url: '#' }
       ]
     },
     {
       title: 'Seller',
       icon: 'https://assets.website-files.com/63a1773692843c14b3b68ca0/63a1773692843c2e9ab68d1b_S.svg',
       subLinks: [
-        { title: 'Pricing', url: '#' },
-        { title: 'Blog', url: '/real-estate/blog' }
+        { title: 'Products', url: '/product-listing' },
+        { title: 'Categories', url: '/categories' }
       ]
     },
 
