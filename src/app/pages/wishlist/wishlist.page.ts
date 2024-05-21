@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { DataHelperService } from 'src/app/services/data-helper.service';
+import { iProduct } from 'src/app/models/product'; // Assuming you have a product interface
 
 @Component({
   selector: 'app-wishlist',
@@ -8,7 +9,7 @@ import { DataHelperService } from 'src/app/services/data-helper.service';
   styleUrls: ['./wishlist.page.scss'],
 })
 export class WishlistPage implements OnInit {
-  wishListProducts: any[] = []; // Placeholder for wishlist items
+  wishListProducts: iProduct[] = []; // Use the iProduct interface
 
   constructor(public dataHelper: DataHelperService, public toastController: ToastController) { }
 
@@ -20,32 +21,31 @@ export class WishlistPage implements OnInit {
     this.wishListProducts = products || [];
   }
 
-  removeItemFromWishlist(selectedProduct) {
+  removeItemFromWishlist(selectedProduct: iProduct) {
     this.dataHelper.removeItem(selectedProduct, 'wishList');
+    this.presentToast('Product removed from wishlist');
     this.ionViewWillEnter();
   }
 
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
-      duration: 2000, // Duration in milliseconds
-      position: 'top' // You can change the position (top, middle, bottom)
+      duration: 2000,
+      position: 'top'
     });
     toast.present();
   }
 
-  addToCart(product) {
-    const cartProducts = JSON.parse(localStorage.getItem('myCart')) || [];
-    const index = cartProducts.findIndex(x => x.id === product.id);
+  addToCart(product: iProduct) {
+    const cartProducts: iProduct[] = JSON.parse(localStorage.getItem('myCart')) || [];
+    const index = cartProducts.findIndex(x => x.productId === product.productId);
 
     if (index === -1) {
       cartProducts.push(product);
       localStorage.setItem('myCart', JSON.stringify(cartProducts));
       this.presentToast('Product added to cart');
     } else {
-      // Product is already in the cart, handle accordingly (maybe show a message)
-      console.log('Product is already in the cart');
+      this.presentToast('Product is already in the cart');
     }
   }
-
 }

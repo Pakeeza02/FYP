@@ -1,3 +1,4 @@
+/* product-listing.component.scss */
 ion-card {
   border-radius: 10px !important;
   box-shadow: none;
@@ -22,8 +23,6 @@ ion-card {
         @media (max-width: 767px) {
           height: 140px !important;
         }
-
-
       }
     }
   }

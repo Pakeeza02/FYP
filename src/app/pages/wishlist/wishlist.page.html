@@ -1,5 +1,4 @@
 <ion-content class="ion-padding">
-
   <app-header></app-header>
   <div style="margin-top: 120px !important;" class="cart-wrap">
     <div class="container">
@@ -13,28 +12,30 @@
             <table cellpadding="0" cellspacing="0" border="0" width="100%">
               <thead>
                 <tr>
-                  <th width="45%" style="font-size: 16px;">Product Name</th>
+                  <th width="40%" style="font-size: 16px;">Product Name</th>
                   <th width="15%" style="font-size: 16px;">Unit Price</th>
                   <th width="15%" style="font-size: 16px;">Stock Status</th>
-                  <th width="15%" style="font-size: 16px;">Action</th>
+                  <th width="30%" style="font-size: 16px;">Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let item of wishListProducts">
-                  <td width="45%">
+                  <td width="40%">
                     <div class="display-flex align-center">
                       <div class="img-product">
-                        <img [src]="item.coverImage" alt="" class="mCS_img_loaded">
+                        <img [src]="item.imageUrls[0]" alt="" class="mCS_img_loaded">
                       </div>
                       <div class="name-product">
-                        {{ item.title }}
+                        {{ item.productName }}
                       </div>
                     </div>
                   </td>
                   <td width="15%" class="price">{{ item.price | currency }}</td>
-                  <td width="15%"><span class="in-stock-box">{{ item.stockStatus || 100}}</span></td>
-                  <td width="15%"><button (click)="addToCart(item)" class="round-black-btn small-btn">Add to
-                      Cart</button></td>
+                  <td width="15%"><span class="in-stock-box">{{ item.stockStatus || 100 }}</span></td>
+                  <td width="50%" class="action-cell">
+                    <button (click)="addToCart(item)" class="round-black-btn small-btn mt-2">Add to Cart</button>
+                    <ion-icon name="trash-outline" class="delete-icon mt-1" (click)="removeItemFromWishlist(item)" color="danger" style="font-size: 24px;"></ion-icon>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -43,7 +44,5 @@
       </div>
     </div>
   </div>
-
   <app-footer></app-footer>
-
 </ion-content>

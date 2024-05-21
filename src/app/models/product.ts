@@ -10,4 +10,5 @@ export class iProduct {
     imageUrls: string[] = [];
     productId: string;
     price: number;
+    stockStatus?: string;
 }

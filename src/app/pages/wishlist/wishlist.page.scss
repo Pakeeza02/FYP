@@ -169,3 +169,14 @@
     font-size: 20px;
     color: #212529;
 }
+
+.action-cell {
+    display: flex;
+    align-items: center;
+  }
+  
+  .delete-icon {
+    margin-left: 10px; /* Adjust the margin as needed to align the icon */
+    cursor: pointer;
+  }
+  

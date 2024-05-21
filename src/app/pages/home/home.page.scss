@@ -70,3 +70,28 @@ ion-card {
     height: 200px;
     object-fit: cover;
 }
+
+.limited-rows {
+    display: flex;
+    flex-wrap: wrap;
+    max-height: calc(2 * var(--row-height)); /* Restrict to 2 rows */
+    overflow: hidden;
+  
+    ion-row {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+  
+      ion-col {
+        flex: 0 0 calc(33.33% - 10px); /* Adjust based on the number of columns per row */
+        max-width: calc(33.33% - 10px); /* Adjust based on the number of columns per row */
+        margin: 5px; /* Adjust spacing between columns if needed */
+      }
+    }
+  }
+  
+  /* Define the variable for row height if not already defined */
+  :root {
+    --row-height: 300px; /* Adjust this value based on the height of each row */
+  }
+  

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataHelperService } from 'src/app/services/data-helper.service';
-import { HttpHelperService } from 'src/app/services/http-helper.service';
-import { ToastController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { UserAuthService } from 'src/app/services/user-auth.service';
 import { iProduct } from 'src/app/models/product';
-
+import { InboxPage } from 'src/app/pages/inbox/inbox.page';
 
 @Component({
   selector: 'app-product-details',
@@ -21,59 +20,66 @@ export class ProductDetailsPage implements OnInit {
   productDetail: iProduct;
 
   constructor(public dataHelper: DataHelperService,
-    public httpHelper: HttpHelperService,
-    private toastController: ToastController,
-    public userAuth: UserAuthService) {
+              private toastController: ToastController,
+              private navCtrl: NavController,
+              public userAuth: UserAuthService) {
     this.productDetail = this.dataHelper.productDetails;
+
+    // Ensure the productDetail has imageUrls assigned if not already
+    if (!this.productDetail.imageUrls || this.productDetail.imageUrls.length === 0) {
+      this.productDetail.imageUrls = this.imgUrls;
+    }
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
-      duration: 2000, // Duration in milliseconds
-      position: 'top' // You can change the position (top, middle, bottom)
+      duration: 2000,
+      position: 'top'
     });
     toast.present();
   }
 
-  isProductInWishlist(selectedProduct) {
-    const wishListProducts = JSON.parse(localStorage.getItem('wishList')) || [];
-    const index = wishListProducts.findIndex(x => x.id === selectedProduct.id);
-    return index >= 0;
+  isProductInWishlist(selectedProduct: iProduct): boolean {
+    const wishListProducts: iProduct[] = JSON.parse(localStorage.getItem('wishList')) || [];
+    return wishListProducts.some(product => product.productId === selectedProduct.productId);
   }
 
-  addWishlist(product) {
-    const wishListProducts = JSON.parse(localStorage.getItem('wishList')) || [];
+  addWishlist(product: iProduct) {
+    const wishListProducts: iProduct[] = JSON.parse(localStorage.getItem('wishList')) || [];
     console.log('Existing Wishlist:', wishListProducts);
-    // Check if the product is already in the wishlist
-    const index = wishListProducts.findIndex(x => x.id === product.id);
+
+    const index = wishListProducts.findIndex(x => x.productId === product.productId);
 
     if (index === -1) {
-      // Product not in wishlist, add it
       wishListProducts.push(product);
       localStorage.setItem('wishList', JSON.stringify(wishListProducts));
       console.log('Updated Wishlist:', wishListProducts);
+      this.presentToast('Product added to wishlist');
     } else {
-      // Product is already in the wishlist, handle accordingly (maybe show a message)
       console.log('Product is already in the wishlist');
+      this.presentToast('Product is already in the wishlist');
     }
   }
 
-  addToCart(product) {
-    const cartProducts = JSON.parse(localStorage.getItem('myCart')) || [];
-    const index = cartProducts.findIndex(x => x.id === product.id);
+  addToCart(product: iProduct) {
+    const cartProducts: iProduct[] = JSON.parse(localStorage.getItem('myCart')) || [];
+    const index = cartProducts.findIndex(x => x.productId === product.productId);
 
     if (index === -1) {
       cartProducts.push(product);
       localStorage.setItem('myCart', JSON.stringify(cartProducts));
       this.presentToast('Product added to cart');
     } else {
-      // Product is already in the cart, handle accordingly (maybe show a message)
-      console.log('Product is already in the cart');
+      this.presentToast('Product is already in the cart');
     }
+  }
+  
+  contactSeller(sellerUid: string, productId: string) {
+    // Navigate to the InboxPage and pass the seller's UID and product ID
+    this.navCtrl.navigateForward(`/inbox/${sellerUid}/${productId}`);
   }
 
 }

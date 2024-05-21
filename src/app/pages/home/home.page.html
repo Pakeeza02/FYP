@@ -1,8 +1,9 @@
+<!-- home.page.html -->
 <app-header></app-header>
 
 <ion-content class="ion-padding">
     <div class="scrollHorizontal" style="margin-top: 120px !important;">
-        <ion-card *ngFor="let img of slideImages;index as i" class="ion-no-margin reviewCard1">
+        <ion-card *ngFor="let img of slideImages; index as i" class="ion-no-margin reviewCard1">
             <ion-card-content class="ion-no-padding">
                 <img class="images" [src]="img" height="200px">
             </ion-card-content>
@@ -14,7 +15,7 @@
     </div>
     
     <div class="mt-2">
-        <app-product-listing></app-product-listing>
+        <app-product-listing class="limited-rows"></app-product-listing>
     </div>
 
     <div class="mt-2 mb-2">
@@ -26,5 +27,4 @@
     </div>
 
     <app-footer></app-footer>
-
 </ion-content>
